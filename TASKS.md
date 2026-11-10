@@ -6,7 +6,7 @@ and stop. “Accept” is the task's acceptance criteria.
 ## Phase 1 — Foundation
 
 - [x] **01 Inspect repositories.** Audit actual API/auth/Next.js constraints and add project guidance. **Accept:** implementation-backed audit; backend untouched. **Commit:** `docs: audit frontend integration requirements`.
-- [ ] **02 Configure Next.js and TypeScript.** Tighten framework/compiler and scripts. **Accept:** strict typecheck passes. **Commit:** `chore: configure nextjs and typescript`.
+- [x] **02 Configure Next.js and TypeScript.** Tighten framework/compiler and scripts. **Accept:** strict typecheck passes. **Commit:** `chore: configure nextjs and typescript`.
 - [ ] **03 Configure code quality.** Establish Biome lint/format rules. **Accept:** both checks pass. **Commit:** `chore: configure code quality tooling`.
 - [ ] **04 Configure Tailwind and shadcn/ui.** Add aliases, utilities, and base primitive. **Accept:** accessible primitive builds. **Commit:** `chore: configure ui tooling`.
 - [ ] **05 Configure theme and typography.** Add semantic clinical tokens, focus, and motion rules. **Accept:** essential contrast is AA. **Commit:** `style: add clinical design tokens`.
