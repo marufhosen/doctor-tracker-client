@@ -24,7 +24,7 @@ and stop. “Accept” is the task's acceptance criteria.
 
 ## Phase 3 — Authentication
 
-- [ ] **14 Implement cookie synchronization.** Mirror only known cookies at root with preserved flags/expiry. **Accept:** session, persistent, clear tests; tokens server-only. **Commit:** `feat: synchronize authentication cookies`.
+- [x] **14 Implement cookie synchronization.** Mirror only known cookies at root with preserved flags/expiry. **Accept:** session, persistent, clear tests; tokens server-only. **Commit:** `feat: synchronize authentication cookies`.
 - [ ] **15 Implement login action.** Validate, send Origin, require ADMIN, sync cookies, return safe result. **Accept:** invalid role/credentials/backend cases tested. **Commit:** `feat: add login server action`.
 - [ ] **16 Build login form.** Responsive split UI using `useFormik`, validation, visibility, pending/errors. **Accept:** labelled and keyboard/mobile accessible. **Commit:** `feat: build login experience`.
 - [ ] **17 Support Remember Me.** Wire boolean without changing backend lifetime. **Accept:** persistent/session cookie cases tested. **Commit:** `feat: support remembered sessions`.
