@@ -11,7 +11,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **04 Configure Tailwind and shadcn/ui.** Add aliases, utilities, and base primitive. **Accept:** accessible primitive builds. **Commit:** `chore: configure ui tooling`.
 - [x] **05 Configure theme and typography.** Add semantic clinical tokens, focus, and motion rules. **Accept:** essential contrast is AA. **Commit:** `style: add clinical design tokens`.
 - [x] **06 Configure environment.** Validate server-only `API_BASE_URL` and add safe example. **Accept:** invalid config fails clearly; no secret/public API variable. **Commit:** `chore: validate server environment`.
-- [ ] **07 Configure tests.** Add Bun-compatible unit/component setup. **Accept:** smoke test passes. **Commit:** `test: configure frontend test infrastructure`.
+- [x] **07 Configure tests.** Add Bun-compatible unit/component setup. **Accept:** smoke test passes. **Commit:** `test: configure frontend test infrastructure`.
 
 ## Phase 2 — API integration
 
