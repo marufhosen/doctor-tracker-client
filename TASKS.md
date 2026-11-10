@@ -9,7 +9,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **02 Configure Next.js and TypeScript.** Tighten framework/compiler and scripts. **Accept:** strict typecheck passes. **Commit:** `chore: configure nextjs and typescript`.
 - [x] **03 Configure code quality.** Establish Biome lint/format rules. **Accept:** both checks pass. **Commit:** `chore: configure code quality tooling`.
 - [x] **04 Configure Tailwind and shadcn/ui.** Add aliases, utilities, and base primitive. **Accept:** accessible primitive builds. **Commit:** `chore: configure ui tooling`.
-- [ ] **05 Configure theme and typography.** Add semantic clinical tokens, focus, and motion rules. **Accept:** essential contrast is AA. **Commit:** `style: add clinical design tokens`.
+- [x] **05 Configure theme and typography.** Add semantic clinical tokens, focus, and motion rules. **Accept:** essential contrast is AA. **Commit:** `style: add clinical design tokens`.
 - [ ] **06 Configure environment.** Validate server-only `API_BASE_URL` and add safe example. **Accept:** invalid config fails clearly; no secret/public API variable. **Commit:** `chore: validate server environment`.
 - [ ] **07 Configure tests.** Add Bun-compatible unit/component setup. **Accept:** smoke test passes. **Commit:** `test: configure frontend test infrastructure`.
 
