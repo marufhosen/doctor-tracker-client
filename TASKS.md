@@ -19,7 +19,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **09 Define API types/schemas.** Add Zod models for envelopes, entities, inputs, and analytics. **Accept:** valid/invalid fixtures pass. **Commit:** `feat: define validated api contracts`.
 - [x] **10 Create server API client.** Add server-only URL, timeout, parsing, cookie forwarding, and request policy. **Accept:** GET and unsafe behavior tested. **Commit:** `feat: add server api client`.
 - [x] **11 Normalize API errors.** Map validation/auth/forbidden/not-found/rate/network/timeout safely. **Accept:** no internals leak. **Commit:** `feat: normalize api errors`.
-- [ ] **12 Add query utilities.** Serialize only supported filters/dates/sort/page. **Accept:** encoding and invalid values tested. **Commit:** `feat: add api query utilities`.
+- [x] **12 Add query utilities.** Serialize only supported filters/dates/sort/page. **Accept:** encoding and invalid values tested. **Commit:** `feat: add api query utilities`.
 - [ ] **13 Add API integration tests.** Cover fetch, timeout, cookies, validation, retry limits. **Accept:** deterministic suite passes. **Commit:** `test: cover api integration layer`.
 
 ## Phase 3 — Authentication
