@@ -16,7 +16,7 @@ and stop. “Accept” is the task's acceptance criteria.
 ## Phase 2 — API integration
 
 - [x] **08 Finalize contract inventory.** Reconcile audit with schemas/fixtures. **Accept:** every consumed endpoint is traceable. **Commit:** `docs: finalize api contract inventory`.
-- [ ] **09 Define API types/schemas.** Add Zod models for envelopes, entities, inputs, and analytics. **Accept:** valid/invalid fixtures pass. **Commit:** `feat: define validated api contracts`.
+- [x] **09 Define API types/schemas.** Add Zod models for envelopes, entities, inputs, and analytics. **Accept:** valid/invalid fixtures pass. **Commit:** `feat: define validated api contracts`.
 - [ ] **10 Create server API client.** Add server-only URL, timeout, parsing, cookie forwarding, and request policy. **Accept:** GET and unsafe behavior tested. **Commit:** `feat: add server api client`.
 - [ ] **11 Normalize API errors.** Map validation/auth/forbidden/not-found/rate/network/timeout safely. **Accept:** no internals leak. **Commit:** `feat: normalize api errors`.
 - [ ] **12 Add query utilities.** Serialize only supported filters/dates/sort/page. **Accept:** encoding and invalid values tested. **Commit:** `feat: add api query utilities`.
