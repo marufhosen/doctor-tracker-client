@@ -35,6 +35,7 @@ interface ApiClientConfig {
   baseUrl: string;
   fetchImpl?: FetchLike;
   defaultTimeoutMs?: number;
+  createTimeoutSignal?: (timeoutMs: number) => AbortSignal;
 }
 
 const createApiUrl = (baseUrl: URL, path: string): URL => {
@@ -56,8 +57,12 @@ const createApiUrl = (baseUrl: URL, path: string): URL => {
   return url;
 };
 
-const createRequestSignal = (signal: AbortSignal | undefined, timeoutMs: number): AbortSignal => {
-  const timeoutSignal = AbortSignal.timeout(timeoutMs);
+const createRequestSignal = (
+  signal: AbortSignal | undefined,
+  timeoutMs: number,
+  createTimeoutSignal: (timeoutMs: number) => AbortSignal,
+): AbortSignal => {
+  const timeoutSignal = createTimeoutSignal(timeoutMs);
 
   return signal ? AbortSignal.any([signal, timeoutSignal]) : timeoutSignal;
 };
@@ -66,6 +71,7 @@ export function createApiClient({
   baseUrl,
   fetchImpl = fetch,
   defaultTimeoutMs = 8_000,
+  createTimeoutSignal = (timeoutMs) => AbortSignal.timeout(timeoutMs),
 }: ApiClientConfig): ApiClient {
   const parsedBaseUrl = new URL(baseUrl);
 
@@ -99,6 +105,7 @@ export function createApiClient({
       const cookieHeader = cookies ? serializeAuthCookies(cookies) : undefined;
 
       headers.set("Accept", "application/json");
+      headers.delete("Cookie");
       if (cookieHeader) {
         headers.set("Cookie", cookieHeader);
       }
@@ -115,7 +122,7 @@ export function createApiClient({
             headers,
             cache,
             redirect: "error",
-            signal: createRequestSignal(signal, timeoutMs),
+            signal: createRequestSignal(signal, timeoutMs, createTimeoutSignal),
             ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
           });
 
