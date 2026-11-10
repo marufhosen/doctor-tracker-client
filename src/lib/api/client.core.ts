@@ -1,6 +1,7 @@
 import type { z } from "zod";
 
 import { type AuthCookies, serializeAuthCookies } from "@/lib/api/cookies";
+import { createApiHttpError, normalizeApiClientError } from "@/lib/api/errors";
 
 type FetchLike = (input: string | URL | Request, init?: RequestInit) => Promise<Response>;
 type ApiMethod = "GET" | "HEAD" | "POST" | "PATCH" | "DELETE";
@@ -119,7 +120,7 @@ export function createApiClient({
           });
 
           if (!response.ok) {
-            throw new Error(`API request failed with status ${response.status}`);
+            throw await createApiHttpError(response);
           }
 
           const payload: unknown = await response.json();
@@ -134,14 +135,14 @@ export function createApiClient({
             attempt < maxNetworkRetries && error instanceof TypeError && !signal?.aborted;
 
           if (!canRetry) {
-            throw error;
+            throw normalizeApiClientError(error);
           }
 
           attempt += 1;
         }
       }
 
-      throw new Error("API request failed");
+      throw normalizeApiClientError(undefined);
     },
   };
 }
