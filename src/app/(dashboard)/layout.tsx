@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { RefreshCoordinator } from "@/components/auth/refresh-coordinator";
+import { ApplicationShell } from "@/components/layout/application-shell";
 import { getAuthCookies } from "@/lib/auth/cookies.server";
 import { getProtectedRouteDecision } from "@/lib/auth/protected.core";
 import { getSession } from "@/lib/auth/session.server";
@@ -22,5 +23,9 @@ async function ProtectedContent({ children }: { children: React.ReactNode }) {
   }
   if (decision === "forbidden") redirect("/login?reason=forbidden");
   if (decision === "unavailable") throw new Error("Authentication service unavailable");
-  return children;
+  return (
+    <ApplicationShell navigation={null} topbar={null}>
+      {children}
+    </ApplicationShell>
+  );
 }
