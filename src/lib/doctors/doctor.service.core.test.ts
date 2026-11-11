@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 
 import type { ApiClient } from "@/lib/api/client.core";
-import { loadDoctorList } from "@/lib/doctors/doctor.service.core";
+import { loadDoctorDetail, loadDoctorList } from "@/lib/doctors/doctor.service.core";
 
 test("loads authenticated no-store doctors with validated pagination metadata", async () => {
   let options: unknown;
@@ -29,4 +29,16 @@ test("loads authenticated no-store doctors with validated pagination metadata", 
     cookies: { doctor_tracker_access: "access" },
     cache: "no-store",
   });
+});
+
+test("validates a doctor identifier before fetching details", async () => {
+  let calls = 0;
+  const client = {
+    request: async () => {
+      calls += 1;
+      throw new Error("not reached");
+    },
+  } as unknown as ApiClient;
+  await expect(loadDoctorDetail(client, {}, "invalid")).rejects.toThrow("Invalid identifier");
+  expect(calls).toBe(0);
 });

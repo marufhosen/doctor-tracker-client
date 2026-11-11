@@ -2,7 +2,8 @@ import type { ApiClient } from "@/lib/api/client.core";
 import type { AuthCookies } from "@/lib/api/cookies";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { type DoctorListQuery, serializeDoctorListQuery, withQuery } from "@/lib/api/query";
-import { doctorListResponseSchema } from "@/lib/api/schemas/doctor";
+import { objectIdSchema } from "@/lib/api/schemas/common";
+import { doctorListResponseSchema, doctorResponseSchema } from "@/lib/api/schemas/doctor";
 
 export async function loadDoctorList(
   client: ApiClient,
@@ -17,4 +18,15 @@ export async function loadDoctorList(
   });
 
   return { doctors: response.data.data, meta: response.data.meta };
+}
+
+export async function loadDoctorDetail(client: ApiClient, cookies: AuthCookies, doctorId: string) {
+  const id = objectIdSchema.parse(doctorId);
+  const response = await client.request({
+    path: apiEndpoints.doctors.detail(id),
+    cookies,
+    cache: "no-store",
+    responseSchema: doctorResponseSchema,
+  });
+  return response.data.data.doctor;
 }
