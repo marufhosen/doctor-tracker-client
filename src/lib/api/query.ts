@@ -157,3 +157,4 @@ export type DoctorListQuery = z.input<typeof doctorListQuerySchema>;
 export type ParsedDoctorListQuery = z.output<typeof doctorListQuerySchema>;
 export type DoctorPatientListQuery = z.input<typeof doctorPatientListQuerySchema>;
 export type PatientListQuery = z.input<typeof patientListQuerySchema>;
+export type ParsedPatientListQuery = z.output<typeof patientListQuerySchema>;

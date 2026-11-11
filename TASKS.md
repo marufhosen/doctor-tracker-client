@@ -70,7 +70,7 @@ and stop. “Accept” is the task's acceptance criteria.
 
 ## Phase 7 — Patients
 
-- [ ] **48 Integrate patient listing.** Validated no-shared-cache global listing. **Accept:** invalid filters safe. **Commit:** `feat: integrate patient listing`.
+- [x] **48 Integrate patient listing.** Validated no-shared-cache global listing. **Accept:** invalid filters safe. **Commit:** `feat: integrate patient listing`.
 - [ ] **49 Create patients table.** Responsive rows/cards and real actions. **Accept:** optional fields and mobile safe. **Commit:** `feat: add patients table`.
 - [ ] **50 Add patient search.** URL state with reset/clear/history/no-JS. **Accept:** all flows work. **Commit:** `feat: add patient search`.
 - [ ] **51 Add patient filters.** Real condition/doctor/date/sort controls. **Accept:** API encoding correct. **Commit:** `feat: add patient filters`.
