@@ -1,4 +1,5 @@
 import { DoctorFilters } from "@/components/doctors/doctor-filters";
+import { DoctorPagination } from "@/components/doctors/doctor-pagination";
 import { DoctorSearch } from "@/components/doctors/doctor-search";
 import { DoctorsList } from "@/components/doctors/doctors-list";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
@@ -34,6 +35,9 @@ export default async function DoctorsPage({ searchParams }: PageProps<"/doctors"
       </div>
       <div className="mt-6">
         <DoctorsList doctors={doctors} />
+      </div>
+      <div className="mt-6">
+        <DoctorPagination meta={meta} query={query} />
       </div>
     </section>
   );
