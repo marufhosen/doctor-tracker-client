@@ -5,7 +5,13 @@ import type { ReactNode } from "react";
 
 import { getPageContext } from "@/components/layout/page-context";
 
-export function TopNavbar({ navigationControl }: { navigationControl?: ReactNode }) {
+export function TopNavbar({
+  navigationControl,
+  profileMenu,
+}: {
+  navigationControl?: ReactNode;
+  profileMenu?: ReactNode;
+}) {
   const context = getPageContext(usePathname());
 
   return (
@@ -17,6 +23,7 @@ export function TopNavbar({ navigationControl }: { navigationControl?: ReactNode
         </p>
         <h1 className="truncate text-lg leading-tight sm:text-xl">{context.title}</h1>
       </div>
+      <div className="ml-auto flex items-center">{profileMenu}</div>
     </div>
   );
 }
