@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 import { refreshSessionAction } from "@/actions/auth.actions";
+import { requestCoordinatedRefresh } from "@/lib/auth/refresh-client";
 
 export function RefreshCoordinator() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export function RefreshCoordinator() {
   useEffect(() => {
     if (started.current) return;
     started.current = true;
-    void refreshSessionAction().then((result) => {
+    void requestCoordinatedRefresh(refreshSessionAction).then((result) => {
       if (result.success) router.refresh();
       else router.replace("/login");
     });
