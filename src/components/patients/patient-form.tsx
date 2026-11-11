@@ -9,6 +9,7 @@ import { createDoctorPatientAction } from "@/actions/doctor-patient.actions";
 import {
   normalizePatientValues,
   type PatientFormValues as Values,
+  validatePatientValues,
 } from "@/components/patients/patient-form.core";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -50,14 +51,7 @@ export function PatientForm({
   const [selectedDoctorId, setSelectedDoctorId] = useState(doctorId ?? doctors?.[0]?.id ?? "");
   const formik = useFormik<Values>({
     initialValues,
-    validate: (values) => {
-      if (normalizePatientValues(values)) return {};
-      const errors: Partial<Record<keyof Values, string>> = {};
-      if (!values.name.trim()) errors.name = "Enter the patient name.";
-      if (!values.condition.trim()) errors.condition = "Enter the patient condition.";
-      if (!Object.keys(errors).length) errors.name = "Review the patient details.";
-      return errors;
-    },
+    validate: validatePatientValues,
     onSubmit: async (values, helpers) => {
       const input = normalizePatientValues(values);
       if (!input) {

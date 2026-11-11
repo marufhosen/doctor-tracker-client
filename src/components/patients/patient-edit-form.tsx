@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import {
   normalizePatientUpdate,
   patientEditValues,
+  validatePatientEditValues,
 } from "@/components/patients/patient-edit-form.core";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,8 +39,7 @@ export function PatientEditForm({
   const router = useRouter();
   const formik = useFormik({
     initialValues: patientEditValues(patient),
-    validate: (values) =>
-      normalizePatientUpdate(values) ? {} : { name: "Review the patient details." },
+    validate: validatePatientEditValues,
     onSubmit: async (values, helpers) => {
       const input = normalizePatientUpdate(values);
       if (!input) return;

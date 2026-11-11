@@ -2,6 +2,7 @@ import { expect, test } from "bun:test";
 import {
   normalizePatientUpdate,
   patientEditValues,
+  validatePatientEditValues,
 } from "@/components/patients/patient-edit-form.core";
 import type { Patient } from "@/lib/api/schemas/patient";
 
@@ -24,6 +25,23 @@ test("hydrates editable values without exposing doctor assignment", () => {
     age: "",
     gender: "",
     address: "",
+  });
+});
+
+test("returns field-specific edit errors instead of a generic form message", () => {
+  expect(
+    validatePatientEditValues({
+      ...patientEditValues(patient),
+      name: "",
+      phone: "x",
+      email: "bad",
+      age: "-1",
+    }),
+  ).toMatchObject({
+    name: "Enter the patient's full name.",
+    phone: "Enter a valid phone number.",
+    email: "Enter a valid email address.",
+    age: "Age cannot be negative.",
   });
 });
 

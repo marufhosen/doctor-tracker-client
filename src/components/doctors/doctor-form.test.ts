@@ -6,11 +6,11 @@ test("validates every supported doctor field with the shared schema", () => {
   expect(
     validateDoctorValues({ name: "", specialization: "", hospital: "", phone: "x", email: "bad" }),
   ).toMatchObject({
-    name: expect.any(String),
-    specialization: expect.any(String),
-    hospital: expect.any(String),
-    phone: expect.any(String),
-    email: expect.any(String),
+    name: "Enter the doctor's full name.",
+    specialization: "Enter a specialization.",
+    hospital: "Enter a hospital or clinic.",
+    phone: "Enter a valid phone number.",
+    email: "Enter a valid email address.",
   });
   expect(
     validateDoctorValues({

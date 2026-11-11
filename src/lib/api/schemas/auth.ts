@@ -15,8 +15,16 @@ export const userSchema = z
 
 export const loginInputSchema = z
   .object({
-    email: z.string().trim().toLowerCase().email(),
-    password: z.string().min(1).max(256),
+    email: z
+      .string()
+      .trim()
+      .min(1, "Enter your email address.")
+      .toLowerCase()
+      .email("Enter a valid email address."),
+    password: z
+      .string()
+      .min(1, "Enter your password.")
+      .max(256, "Password must be 256 characters or fewer."),
     rememberMe: z.boolean().default(false),
   })
   .strict();

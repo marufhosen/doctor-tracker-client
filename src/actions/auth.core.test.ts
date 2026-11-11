@@ -17,6 +17,14 @@ test("validates login input before calling the backend", async () => {
     synchronizeCookies: async () => 3,
   });
   expect(result.success).toBe(false);
+  expect(result).toMatchObject({
+    error: {
+      fieldErrors: {
+        email: ["Enter a valid email address."],
+        password: ["Enter your password."],
+      },
+    },
+  });
   expect(login).not.toHaveBeenCalled();
 });
 
