@@ -1,9 +1,13 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
-import { TrendChart } from "@/components/dashboard/trend-chart.client";
 import { combineTrendSeries, formatTrendDate } from "@/components/dashboard/trend-chart.core";
 import { Button } from "@/components/ui/button";
 import type { DashboardTrends } from "@/lib/api/schemas/dashboard";
+
+const TrendChart = dynamic(() =>
+  import("@/components/dashboard/trend-chart.client").then((module) => module.TrendChart),
+);
 
 type TrendAnalyticsProps = {
   trends: DashboardTrends | null;

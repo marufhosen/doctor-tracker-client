@@ -1,5 +1,11 @@
-import { DoctorPatientChart } from "@/components/dashboard/doctor-patient-chart.client";
+import dynamic from "next/dynamic";
 import type { DoctorPatientCount } from "@/lib/api/schemas/dashboard";
+
+const DoctorPatientChart = dynamic(() =>
+  import("@/components/dashboard/doctor-patient-chart.client").then(
+    (module) => module.DoctorPatientChart,
+  ),
+);
 
 export function DoctorPatientAnalytics({ doctors }: { doctors: DoctorPatientCount[] }) {
   return (
