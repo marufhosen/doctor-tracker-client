@@ -1,7 +1,7 @@
 export default function DashboardPage() {
   return (
-    <section aria-labelledby="dashboard-heading">
-      <h1 id="dashboard-heading">Dashboard</h1>
+    <section aria-label="Dashboard overview">
+      <p className="text-muted-foreground">Dashboard insights will appear here.</p>
     </section>
   );
 }

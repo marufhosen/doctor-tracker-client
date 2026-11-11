@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { RefreshCoordinator } from "@/components/auth/refresh-coordinator";
 import { ApplicationShell } from "@/components/layout/application-shell";
 import { DesktopSidebar } from "@/components/layout/desktop-sidebar";
+import { TopNavbar } from "@/components/layout/top-navbar";
 import { getAuthCookies } from "@/lib/auth/cookies.server";
 import { getProtectedRouteDecision } from "@/lib/auth/protected.core";
 import { getSession } from "@/lib/auth/session.server";
@@ -25,7 +26,7 @@ async function ProtectedContent({ children }: { children: React.ReactNode }) {
   if (decision === "forbidden") redirect("/login?reason=forbidden");
   if (decision === "unavailable") throw new Error("Authentication service unavailable");
   return (
-    <ApplicationShell navigation={<DesktopSidebar />} topbar={null}>
+    <ApplicationShell navigation={<DesktopSidebar />} topbar={<TopNavbar />}>
       {children}
     </ApplicationShell>
   );
