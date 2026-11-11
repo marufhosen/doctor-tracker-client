@@ -82,7 +82,7 @@ The Express service owns authentication policy. The client mirrors only the know
 - Login return paths are restricted to local protected routes.
 - API errors are normalized before reaching the UI; raw backend messages and stack traces are not shown.
 
-On protected navigation, the proxy performs an optimistic access-token expiry check. If access is missing or expired while refresh state remains, navigation moves through `/refresh`, rotates the session once, and resumes the original local destination. A rejected, expired, or revoked refresh clears mirrored cookies and returns the user to login.
+On protected navigation, the proxy performs an optimistic access-token expiry check. If access is missing or expired while refresh state remains, it rotates the session internally and continues the original request with the new cookies. Authenticated Server Actions use the same refresh-and-retry policy once. A rejected, expired, or revoked refresh clears mirrored cookies and returns the user to login without exposing a refresh page.
 
 Use HTTPS and secure cookies in production. Configure the server's proxy, CORS, cookie, and origin settings for the deployed client URL.
 

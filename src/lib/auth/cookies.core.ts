@@ -1,4 +1,4 @@
-import { AUTH_COOKIE_NAMES, type AuthCookieName } from "@/lib/api/cookies";
+import { AUTH_COOKIE_NAMES, type AuthCookieName, type AuthCookies } from "@/lib/api/cookies";
 
 export interface MirroredCookie {
   name: AuthCookieName;
@@ -88,4 +88,15 @@ export function syncAuthCookiesFromHeaders(store: MutableCookieStore, headers: H
   }
 
   return synchronized;
+}
+
+export function readAuthCookiesFromHeaders(headers: Headers): AuthCookies {
+  const cookies: AuthCookies = {};
+
+  for (const line of getSetCookieLines(headers)) {
+    const cookie = parseAuthSetCookie(line);
+    if (cookie?.value) cookies[cookie.name] = cookie.value;
+  }
+
+  return cookies;
 }

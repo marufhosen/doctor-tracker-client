@@ -3,11 +3,9 @@ import { expect, mock, test } from "bun:test";
 import { performLogin } from "@/actions/auth.core";
 import { performLogout } from "@/actions/logout.core";
 import { performRefresh } from "@/actions/refresh.core";
-import { ApiClientError } from "@/lib/api/errors";
 import { type MirroredCookie, syncAuthCookiesFromHeaders } from "@/lib/auth/cookies.core";
 import { getProtectedRouteDecision } from "@/lib/auth/protected.core";
 import { getProxyDecision } from "@/lib/auth/proxy.core";
-import { requestCoordinatedRefresh } from "@/lib/auth/refresh-client";
 
 const admin = {
   id: "671000000000000000000001",
@@ -73,29 +71,4 @@ test("runs login, remembered cookie adoption, CSRF rotation, guards, and logout"
   );
   expect(revoke).toHaveBeenCalledTimes(1);
   expect(jar.size).toBe(0);
-});
-
-test("coalesces concurrent refresh and clears cookies after replay rejection", async () => {
-  const clear = mock(async () => undefined);
-  const action = mock(async () =>
-    performRefresh(
-      { doctor_tracker_refresh: "replayed", doctor_tracker_csrf: "csrf" },
-      "http://localhost:3000",
-      {
-        rotate: async () => {
-          throw new ApiClientError("unauthenticated", "Revoked", { code: "REFRESH_TOKEN_REUSED" });
-        },
-        synchronize: async () => 0,
-        clear,
-      },
-    ),
-  );
-  const [first, second] = await Promise.all([
-    requestCoordinatedRefresh(action),
-    requestCoordinatedRefresh(action),
-  ]);
-  expect(first.success).toBe(false);
-  expect(second.success).toBe(false);
-  expect(action).toHaveBeenCalledTimes(1);
-  expect(clear).toHaveBeenCalledTimes(1);
 });

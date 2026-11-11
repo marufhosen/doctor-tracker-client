@@ -6,13 +6,20 @@ test("refreshes protected routes when only the refresh cookie remains", () => {
   expect(getProxyDecision("/dashboard", false, false)).toBe("login");
   expect(getProxyDecision("/doctors", true, false)).toBe("continue");
   expect(getProxyDecision("/patients", false, true)).toBe("refresh");
-  expect(getProxyDecision("/refresh", false, true)).toBe("continue");
 });
 
 test("recognizes usable and expired JWT access cookies", () => {
-  const token = (exp: number) => `header.${btoa(JSON.stringify({ exp }))}.signature`;
+  const encode = (value: string) =>
+    btoa(value).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+  const header = encode(JSON.stringify({ alg: "HS256", typ: "JWT" }));
+  const signature = encode("s".repeat(32));
+  const token = (exp: number) => `${header}.${encode(JSON.stringify({ exp }))}.${signature}`;
   expect(hasUsableAccessToken(token(200), 100)).toBe(true);
   expect(hasUsableAccessToken(token(100), 100)).toBe(false);
+  expect(hasUsableAccessToken(token(200).slice(0, -4), 100)).toBe(false);
+  expect(
+    hasUsableAccessToken(`invalid.${encode(JSON.stringify({ exp: 200 }))}.${signature}`, 100),
+  ).toBe(false);
   expect(hasUsableAccessToken("deleted-or-invalid", 100)).toBe(false);
 });
 
