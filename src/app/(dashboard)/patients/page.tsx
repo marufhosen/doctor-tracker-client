@@ -1,4 +1,5 @@
 import { PatientFilters } from "@/components/patients/patient-filters";
+import { PatientPagination } from "@/components/patients/patient-pagination";
 import { PatientSearch } from "@/components/patients/patient-search";
 import { PatientsList } from "@/components/patients/patients-list";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
@@ -38,6 +39,9 @@ export default async function PatientsPage({ searchParams }: PageProps<"/patient
       </div>
       <div className="mt-6">
         <PatientsList patients={patients} />
+      </div>
+      <div className="mt-6">
+        <PatientPagination meta={meta} query={query} />
       </div>
     </section>
   );
