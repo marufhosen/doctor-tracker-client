@@ -17,7 +17,7 @@ export function TopNavbar({
   const context = getPageContext(usePathname());
 
   return (
-    <div className="flex min-h-20 items-center gap-3 py-2">
+    <div className="flex min-h-16 items-center gap-3 py-1.5">
       {navigationControl}
       <div className="min-w-0">
         <div className="hidden sm:block">

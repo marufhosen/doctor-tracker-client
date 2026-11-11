@@ -8,7 +8,7 @@ export function DashboardSectionError({ title }: { title: string }) {
   return (
     <section
       role="alert"
-      className="rounded-2xl border border-destructive/25 bg-card p-6 shadow-card"
+      className="rounded-2xl border border-destructive/25 bg-card p-5 shadow-card"
     >
       <div className="flex items-start gap-3">
         <AlertCircle aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-destructive" />
@@ -38,14 +38,14 @@ export function DashboardSectionSkeleton({
       aria-label={label}
       aria-busy="true"
       className={cn(
-        "min-h-48 animate-pulse rounded-2xl border bg-card p-6 shadow-card motion-reduce:animate-none",
+        "min-h-40 animate-pulse rounded-2xl border bg-card p-5 shadow-card motion-reduce:animate-none",
         className,
       )}
     >
       <span className="sr-only">Loading…</span>
       <div className="h-5 w-40 rounded bg-muted" />
       <div className="mt-3 h-4 w-64 max-w-full rounded bg-muted" />
-      <div className="mt-8 h-24 rounded-xl bg-muted" />
+      <div className="mt-6 h-24 rounded-xl bg-muted" />
     </section>
   );
 }

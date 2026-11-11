@@ -47,7 +47,7 @@ export function RemovePatientButton({
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-foreground/40 backdrop-blur-[2px]" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[min(30rem,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border bg-card p-5 shadow-xl outline-none sm:p-6">
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[min(30rem,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border bg-card p-5 shadow-xl outline-none">
           <Dialog.Title className="text-xl font-semibold">Remove {patientName}?</Dialog.Title>
           <Dialog.Description className="mt-2 text-sm text-muted-foreground">
             Remove this patient from the doctor’s list. This does not delete the global patient
@@ -62,7 +62,7 @@ export function RemovePatientButton({
               {error}
             </p>
           )}
-          <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
             <Dialog.Close asChild>
               <Button variant="outline" disabled={pending}>
                 Cancel

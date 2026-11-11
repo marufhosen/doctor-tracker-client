@@ -20,14 +20,14 @@ export function TrendAnalytics({ trends, range, validationMessage }: TrendAnalyt
 
   return (
     <section aria-labelledby="trends-heading" className="rounded-[10px] border bg-card shadow-card">
-      <div className="px-5 pt-6 sm:px-6">
+      <div className="px-5 pt-5 sm:px-5">
         <h2 id="trends-heading" className="text-lg">
           Patient registrations
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
           New doctors and patients in the selected period.
         </p>
-        <form method="get" className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end">
+        <form method="get" className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end">
           <label className="grid gap-1 text-sm font-medium">
             From
             <input
@@ -61,16 +61,16 @@ export function TrendAnalytics({ trends, range, validationMessage }: TrendAnalyt
           </p>
         )}
       </div>
-      <div className="p-4 sm:p-6">
+      <div className="p-4 sm:p-5">
         {!validationMessage && data.length === 0 ? (
-          <div className="grid min-h-48 place-items-center text-center text-sm text-muted-foreground">
+          <div className="grid min-h-40 place-items-center text-center text-sm text-muted-foreground">
             No doctor or patient creation activity was recorded for this range.
           </div>
         ) : null}
         {data.length > 0 && (
           <>
             <TrendChart data={data} />
-            <details className="mt-4 rounded-lg border bg-muted/35">
+            <details className="mt-3 rounded-lg border bg-muted/35">
               <summary className="min-h-11 cursor-pointer px-4 py-3 text-sm font-medium">
                 View trend data
               </summary>

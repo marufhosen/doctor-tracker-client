@@ -19,7 +19,7 @@ export default function ApplicationError({
     <main className="grid min-h-dvh place-items-center p-6">
       <section
         aria-labelledby="error-title"
-        className="max-w-lg rounded-2xl border bg-card p-8 text-center shadow-card"
+        className="max-w-lg rounded-2xl border bg-card p-6 text-center shadow-card"
       >
         <AlertTriangle aria-hidden="true" className="mx-auto size-10 text-destructive" />
         <h1 id="error-title" className="mt-4 text-2xl">
@@ -29,7 +29,7 @@ export default function ApplicationError({
           The service may be temporarily unavailable. No technical details or account data have been
           exposed.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
           <Button onClick={reset}>Try again</Button>
           <Button asChild variant="outline">
             <Link href="/dashboard">Go to dashboard</Link>

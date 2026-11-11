@@ -1,22 +1,12 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  ChartNoAxesColumn,
-  LockKeyhole,
-  Plus,
-  ShieldCheck,
-  Stethoscope,
-  Users,
-} from "lucide-react";
+import { Plus } from "lucide-react";
+import Image from "next/image";
 import { Suspense } from "react";
 
 import { LoginForm } from "@/components/auth/login-form";
 import { getSafeReturnPath } from "@/lib/auth/redirect";
 
-const networkFeatures: Array<{ label: string; icon: LucideIcon }> = [
-  { label: "Doctors", icon: Stethoscope },
-  { label: "Patients", icon: Users },
-  { label: "Insights", icon: ChartNoAxesColumn },
-];
+const doctorPhotoUrl =
+  "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1400&q=80";
 
 export default function LoginPage({
   searchParams,
@@ -40,92 +30,68 @@ async function LoginPageContent({
 
 function LoginPageShell({ returnTo = "/dashboard" }: { returnTo?: string }) {
   return (
-    <main className="grid min-h-svh bg-card lg:grid-cols-[45%_55%]">
-      <section className="relative hidden overflow-hidden bg-brand-deep px-[8%] py-12 text-white lg:flex lg:flex-col">
-        <div className="flex items-center gap-3 text-xl font-semibold">
-          <span className="grid size-10 place-items-center rounded-[10px] bg-white/15 text-[#d9cff8]">
-            <Plus aria-hidden="true" className="size-6" />
-          </span>
-          Doctor Tracker
-        </div>
-        <div className="my-auto max-w-[34rem]">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-[10px] font-medium uppercase tracking-wide text-white/75">
-            <ShieldCheck aria-hidden="true" className="size-3.5" />
-            Built for administrators
-          </span>
-          <h1 className="mt-7 text-[clamp(2.4rem,4vw,3.8rem)] leading-[1.12] text-white">
-            Care, connected.
-            <br />
-            Work, simplified.
-          </h1>
-          <p className="mt-5 max-w-md text-base leading-7 text-white/65">
-            Bring your doctors, patients, and insights together in one calm, organized workspace.
-          </p>
-          <div className="mt-10 rounded-2xl bg-[#fbfaff] p-6 text-[#2b3043] shadow-2xl shadow-black/10">
-            <div className="flex items-center justify-between">
-              <p className="flex items-center gap-2 text-sm font-semibold">
-                <span className="size-2 rounded-full bg-primary" />
-                Your care network
+    <main className="relative flex min-h-svh items-center justify-center overflow-hidden bg-background px-4 py-6 sm:px-6 md:py-8">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_15%,color-mix(in_srgb,var(--brand-soft)_75%,transparent),transparent_55%),radial-gradient(circle_at_90%_85%,color-mix(in_srgb,var(--secondary)_90%,transparent),transparent_50%)]"
+      />
+      <div className="relative grid w-full max-w-[60rem] overflow-hidden rounded-[1.75rem] border border-border/80 bg-card shadow-[0_28px_70px_-32px_rgba(40,35,63,0.4)] md:h-[min(42rem,calc(100svh-4rem))] md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <aside className="relative hidden min-h-0 flex-col md:flex">
+          <div className="relative min-h-0 flex-1">
+            <Image
+              src={doctorPhotoUrl}
+              alt=""
+              fill
+              preload
+              sizes="(min-width: 768px) 40vw, 100vw"
+              className="object-cover object-[50%_22%]"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-brand-deep/35 via-transparent to-transparent"
+            />
+          </div>
+          <div className="shrink-0 bg-primary px-8 py-6 text-primary-foreground lg:px-10">
+            <p className="flex items-center justify-center gap-2.5 text-base font-semibold">
+              <span className="grid size-8 place-items-center rounded-full bg-white/15">
+                <Plus aria-hidden="true" className="size-4" />
+              </span>
+              Doctor Tracker
+            </p>
+            <div className="mt-5 border-l-2 border-white/40 pl-4">
+              <p className="text-sm leading-6 text-primary-foreground/85">
+                Welcome to{" "}
+                <span className="font-semibold text-primary-foreground">Doctor Tracker</span>
               </p>
-              <span className="text-[10px] text-muted-foreground">Overview</span>
-            </div>
-            <div className="mt-5 grid grid-cols-3 gap-3">
-              {networkFeatures.map(({ label, icon: Icon }) => (
-                <div key={label} className="rounded-xl bg-white p-4">
-                  <Icon aria-hidden="true" className="size-5 text-primary" />
-                  <p className="mt-4 text-xs font-medium">{label}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 space-y-3">
-              <div className="h-2 w-full rounded-full bg-[#ece8f8]" />
-              <div className="h-2 w-4/5 rounded-full bg-[#ece8f8]" />
-              <div className="h-2 w-2/3 rounded-full bg-[#ece8f8]" />
+              <p className="mt-1 text-lg leading-7 font-semibold">Hospital Management System</p>
+              <p className="mt-3 text-xs leading-5 text-primary-foreground/75">
+                A cloud-based workspace to manage your doctors, patients, and care insights in one
+                organized place.
+              </p>
             </div>
           </div>
-          <div className="mt-8 grid grid-cols-3 gap-4 text-[11px] text-white/65">
-            <span className="flex items-center gap-2">
-              <Stethoscope className="size-4" />
-              Doctor management
-            </span>
-            <span className="flex items-center gap-2">
-              <Users className="size-4" />
-              Patient records
-            </span>
-            <span className="flex items-center gap-2">
-              <ChartNoAxesColumn className="size-4" />
-              Clear insights
-            </span>
+        </aside>
+        <section className="flex min-h-0 flex-col overflow-y-auto px-6 py-8 sm:px-10 lg:px-12">
+          <div className="mx-auto my-auto w-full max-w-[23rem]">
+            <div className="flex items-center gap-2.5">
+              <span className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground">
+                <Plus aria-hidden="true" className="size-5" />
+              </span>
+              <span className="text-lg font-semibold">Doctor Tracker</span>
+            </div>
+            <h1 className="mt-6 text-3xl">Login</h1>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Enter your credentials to login to your account.
+            </p>
+            <div className="mt-6">
+              <LoginForm returnTo={returnTo} />
+            </div>
+            <p className="mt-5 text-center text-xs text-muted-foreground">
+              Don&rsquo;t have an account? Contact your administrator.
+            </p>
           </div>
-        </div>
-        <p className="flex items-center gap-2 text-[11px] text-white/55">
-          <LockKeyhole aria-hidden="true" className="size-4" />A protected workspace for your care
-          network.
-        </p>
-      </section>
-      <section className="flex items-center justify-center px-5 py-12 sm:px-10 lg:px-20">
-        <div className="w-full max-w-[31rem]">
-          <div className="mb-10 flex items-center gap-3 lg:hidden">
-            <span className="grid size-10 place-items-center rounded-[10px] bg-primary text-white">
-              <Plus aria-hidden="true" />
-            </span>
-            <span className="font-semibold">Doctor Tracker</span>
-          </div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-            Administrator access
-          </p>
-          <h2 className="mt-7 text-4xl">Welcome back</h2>
-          <p className="mt-4 text-sm text-muted-foreground">
-            Sign in to manage your doctors and patients.
-          </p>
-          <div className="mt-7">
-            <LoginForm returnTo={returnTo} />
-          </div>
-          <p className="mt-5 text-[11px] text-muted-foreground">
-            Your session is protected. Authorized users only.
-          </p>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 }

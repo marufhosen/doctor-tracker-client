@@ -27,12 +27,12 @@ export function MetricCards({ summary }: { summary: DashboardSummary }) {
       <h2 id="summary-heading" className="sr-only">
         Dashboard summary
       </h2>
-      <dl className="grid gap-5 sm:grid-cols-3">
+      <dl className="grid gap-4 sm:grid-cols-3">
         {metrics.map(({ label, value, detail }) => (
-          <div key={label} className="rounded-[10px] border bg-card p-5 shadow-card sm:p-6">
+          <div key={label} className="rounded-[10px] border bg-card p-4 shadow-card sm:p-5">
             <dt className="text-sm text-muted-foreground">{label}</dt>
-            <dd className="mt-3 text-3xl font-semibold tabular-nums tracking-tight">{value}</dd>
-            <p className="mt-3 text-xs text-primary">{detail}</p>
+            <dd className="mt-2 text-3xl font-semibold tabular-nums tracking-tight">{value}</dd>
+            <p className="mt-2 text-xs text-primary">{detail}</p>
           </div>
         ))}
       </dl>

@@ -13,15 +13,15 @@ export function DoctorPatientAnalytics({ doctors }: { doctors: DoctorPatientCoun
       aria-labelledby="doctor-patients-heading"
       className="h-full rounded-[10px] border bg-card shadow-card"
     >
-      <div className="px-5 pt-6 sm:px-6">
+      <div className="px-5 pt-5 sm:px-5">
         <h2 id="doctor-patients-heading" className="text-lg">
           Patients by doctor
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">Doctors by assigned patient count.</p>
       </div>
-      <div className="p-4 sm:p-6">
+      <div className="p-4 sm:p-5">
         {doctors.length === 0 ? (
-          <div className="grid min-h-48 place-items-center text-center text-sm text-muted-foreground">
+          <div className="grid min-h-40 place-items-center text-center text-sm text-muted-foreground">
             No doctors are available for patient assignment analytics yet.
           </div>
         ) : (
@@ -37,7 +37,7 @@ export function DoctorPatientAnalytics({ doctors }: { doctors: DoctorPatientCoun
 
 export function DoctorAnalyticsTable({ doctors }: { doctors: DoctorPatientCount[] }) {
   return (
-    <details className="mt-4 rounded-lg border bg-muted/35">
+    <details className="mt-3 rounded-lg border bg-muted/35">
       <summary className="min-h-11 cursor-pointer px-4 py-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
         View chart data
       </summary>

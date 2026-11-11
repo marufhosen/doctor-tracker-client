@@ -1,10 +1,11 @@
-import { CalendarDays, Mail, MapPin, Pencil, Phone, Stethoscope, UserRound } from "lucide-react";
+import { CalendarDays, Mail, MapPin, Phone, Stethoscope, UserRound } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/layout/page-navigation";
 import { PatientDeleteControl } from "@/components/patients/patient-delete-control";
+import { PatientEditControl } from "@/components/patients/patient-edit-control";
 import { Button } from "@/components/ui/button";
 import { ApiClientError } from "@/lib/api/errors";
 import type { Patient } from "@/lib/api/schemas/patient";
@@ -59,25 +60,24 @@ export default async function PatientDetailPage({ params }: PageProps<"/patients
         breadcrumbs={[{ label: "Patients", href: "/patients" }, { label: patient.name }]}
         actions={
           <>
-            <Button asChild variant="outline">
-              <Link href={`/patients/${patient.id}/edit` as Route}>
-                <Pencil aria-hidden="true" />
-                Edit patient
-              </Link>
-            </Button>
-            <PatientDeleteControl patientId={patient.id} patientName={patient.name} />
+            <PatientEditControl patient={patient} />
+            <PatientDeleteControl
+              patientId={patient.id}
+              patientName={patient.name}
+              redirectTo="/patients"
+            />
           </>
         }
       />
-      <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+      <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
         <section
           aria-labelledby="patient-heading"
-          className="rounded-2xl border bg-card p-5 shadow-card sm:p-6"
+          className="rounded-2xl border bg-card p-4 shadow-card sm:p-5"
         >
           <h2 id="patient-heading" className="text-lg">
             Patient details
           </h2>
-          <dl className="mt-5 grid gap-5 sm:grid-cols-2">
+          <dl className="mt-4 grid gap-4 sm:grid-cols-2">
             {details.map(({ label, value, icon: Icon, href }) => (
               <div key={label} className="flex gap-3">
                 <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-secondary text-primary">
@@ -103,14 +103,14 @@ export default async function PatientDetailPage({ params }: PageProps<"/patients
         </section>
         <aside
           aria-labelledby="doctor-heading"
-          className="rounded-2xl border bg-card p-5 shadow-card sm:p-6"
+          className="rounded-2xl border bg-card p-4 shadow-card sm:p-5"
         >
           <h2 id="doctor-heading" className="text-lg">
             Assigned doctor
           </h2>
           <p className="mt-4 font-semibold">{doctor.name}</p>
           <p className="mt-1 text-sm text-muted-foreground">{doctor.specialization}</p>
-          <Button asChild variant="outline" className="mt-5">
+          <Button asChild variant="outline" className="mt-4">
             <Link href={`/doctors/${doctor.id}` as Route}>View doctor</Link>
           </Button>
         </aside>

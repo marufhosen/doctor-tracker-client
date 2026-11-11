@@ -1,8 +1,10 @@
-import { PatientFilters } from "@/components/patients/patient-filters";
+import { PageHeader } from "@/components/layout/page-navigation";
+import { CreatePatientDialog } from "@/components/patients/create-patient-dialog";
+import { PatientDeleteControl } from "@/components/patients/patient-delete-control";
+import { PatientEditControl } from "@/components/patients/patient-edit-control";
 import { PatientPagination } from "@/components/patients/patient-pagination";
-import { PatientSearch } from "@/components/patients/patient-search";
+import { PatientToolbar } from "@/components/patients/patient-toolbar";
 import { PatientsList } from "@/components/patients/patients-list";
-import { Button } from "@/components/ui/button";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
 import { getPatientList } from "@/lib/patients/patient.service.server";
 import { parsePatientListQuery } from "@/lib/patients/patient-query";
@@ -19,46 +21,31 @@ export default async function PatientsPage({ searchParams }: PageProps<"/patient
   return (
     <section aria-labelledby="patients-heading">
       <PageHeader
-        title="Patient directory"
-        description={`${meta.total.toLocaleString()} ${meta.total === 1 ? "patient" : "patients"}`}
-        actions={
-          <Button asChild>
-            <Link href="/patients/new">
-              <Plus aria-hidden="true" />
-              Create patient
-            </Link>
-          </Button>
-        }
+        eyebrow="Directory"
+        title="Patients"
+        description={`${meta.total.toLocaleString()} ${meta.total === 1 ? "patient" : "patients"} total`}
+        actions={<CreatePatientDialog doctors={doctors.map(({ id, name }) => ({ id, name }))} />}
       />
       <h2 id="patients-heading" className="sr-only">
         Patients
       </h2>
-      <div className="mt-6 rounded-[10px] border bg-card p-5">
-        <PatientSearch
-          value={query.search}
-          preservedQuery={{
-            doctorId: query.doctorId,
-            condition: query.condition,
-            createdFrom: query.createdFrom?.slice(0, 10),
-            createdTo: query.createdTo?.slice(0, 10),
-            sortBy: query.sortBy,
-            sortOrder: query.sortOrder,
-          }}
+      <PatientToolbar query={query} doctors={doctors} />
+      <div className="mt-3 overflow-hidden rounded-[10px] border bg-card shadow-card">
+        <PatientsList
+          patients={patients}
+          doctors={doctors}
+          renderEdit={(patient) => <PatientEditControl patient={patient} compact />}
+          renderDelete={(patient) => (
+            <PatientDeleteControl
+              key={patient.id}
+              patientId={patient.id}
+              patientName={patient.name}
+              compact
+            />
+          )}
         />
-      </div>
-      <div className="mt-4">
-        <PatientFilters query={query} doctors={doctors} />
-      </div>
-      <div className="mt-6">
-        <PatientsList patients={patients} />
-      </div>
-      <div className="mt-6">
         <PatientPagination meta={meta} query={query} />
       </div>
     </section>
   );
 }
-
-import { Plus } from "lucide-react";
-import Link from "next/link";
-import { PageHeader } from "@/components/layout/page-navigation";

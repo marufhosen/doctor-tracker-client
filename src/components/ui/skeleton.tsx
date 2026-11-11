@@ -13,7 +13,7 @@ export function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>
 
 export function PageSkeleton({ cards = 3, rows = 5 }: { cards?: number; rows?: number }) {
   return (
-    <output aria-busy="true" aria-label="Loading page" className="block space-y-6">
+    <output aria-busy="true" aria-label="Loading page" className="block space-y-4">
       <div className="space-y-3">
         <Skeleton className="h-4 w-32" />
         <Skeleton className="h-9 w-64 max-w-full" />
@@ -24,7 +24,7 @@ export function PageSkeleton({ cards = 3, rows = 5 }: { cards?: number; rows?: n
           <Skeleton key={`card-${index + 1}`} className="h-32" />
         ))}
       </div>
-      <div className="space-y-3 rounded-2xl border bg-card p-5">
+      <div className="space-y-2.5 rounded-2xl border bg-card p-4">
         {Array.from({ length: rows }, (_, index) => (
           <Skeleton key={`row-${index + 1}`} className="h-14 w-full" />
         ))}

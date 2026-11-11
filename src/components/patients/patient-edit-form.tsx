@@ -1,7 +1,9 @@
 "use client";
 
 import { useFormik } from "formik";
+import { LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+
 import {
   normalizePatientUpdate,
   patientEditValues,
@@ -18,9 +20,13 @@ type Result =
 export function PatientEditForm({
   patient,
   updateAction,
+  onSuccess,
+  onCancel,
 }: {
   patient: Patient;
   updateAction: (patientId: string, input: PatientUpdate) => Promise<Result>;
+  onSuccess?: () => void;
+  onCancel?: () => void;
 }) {
   const router = useRouter();
   const formik = useFormik({
@@ -32,6 +38,11 @@ export function PatientEditForm({
       if (!input) return;
       const result = await updateAction(patient.id, input);
       if (result.success) {
+        helpers.resetForm();
+        if (onSuccess) {
+          onSuccess();
+          return;
+        }
         router.push(`/patients/${patient.id}`);
         router.refresh();
         return;
@@ -53,8 +64,9 @@ export function PatientEditForm({
     ["age", "Age", "number"],
     ["address", "Address", "text"],
   ] as const;
+
   return (
-    <form onSubmit={formik.handleSubmit} noValidate className="max-w-2xl space-y-5">
+    <form onSubmit={formik.handleSubmit} noValidate className="space-y-4">
       {formik.status && (
         <p
           role="alert"
@@ -64,30 +76,36 @@ export function PatientEditForm({
           {formik.status}
         </p>
       )}
-      <div className="grid gap-5 sm:grid-cols-2">
-        {fields.map(([name, label, type]) => (
-          <div key={name}>
-            <Label htmlFor={`patient-${name}`}>
-              {label}
-              {name === "name" || name === "condition" ? " *" : ""}
-            </Label>
-            <Input
-              id={`patient-${name}`}
-              name={name}
-              type={type}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              aria-invalid={Boolean(formik.touched[name] && formik.errors[name])}
-              className="mt-2 h-control"
-              min={name === "age" ? 0 : undefined}
-              max={name === "age" ? 150 : undefined}
-            />
-            {formik.touched[name] && formik.errors[name] && (
-              <p className="mt-1 text-sm text-destructive">{formik.errors[name]}</p>
-            )}
-          </div>
-        ))}
+      <div className="grid gap-4 sm:grid-cols-2">
+        {fields.map(([name, label, type]) => {
+          const error = formik.touched[name] ? formik.errors[name] : undefined;
+          return (
+            <div key={name}>
+              <Label htmlFor={`patient-${name}`}>
+                {label}
+                {name === "name" || name === "condition" ? " *" : ""}
+              </Label>
+              <Input
+                id={`patient-${name}`}
+                name={name}
+                type={type}
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? `patient-${name}-error` : undefined}
+                className="mt-2 h-control"
+                min={name === "age" ? 0 : undefined}
+                max={name === "age" ? 150 : undefined}
+              />
+              {error && (
+                <p id={`patient-${name}-error`} className="mt-1 text-sm text-destructive">
+                  {error}
+                </p>
+              )}
+            </div>
+          );
+        })}
         <div>
           <Label htmlFor="patient-gender">Gender</Label>
           <select
@@ -95,7 +113,7 @@ export function PatientEditForm({
             name="gender"
             value={formik.values.gender}
             onChange={formik.handleChange}
-            className="mt-2 h-control w-full rounded-lg border bg-background px-3"
+            className="mt-2 h-control w-full rounded-lg border bg-background px-3 text-sm"
           >
             <option value="">Not provided</option>
             <option value="MALE">Male</option>
@@ -104,13 +122,29 @@ export function PatientEditForm({
           </select>
         </div>
       </div>
-      <Button
-        type="submit"
-        disabled={!formik.dirty || formik.isSubmitting}
-        className="h-control px-5"
-      >
-        {formik.isSubmitting ? "Saving…" : "Save changes"}
-      </Button>
+      <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row sm:justify-end">
+        {onCancel && (
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onCancel}
+            disabled={formik.isSubmitting}
+            className="h-control px-5"
+          >
+            Cancel
+          </Button>
+        )}
+        <Button
+          type="submit"
+          disabled={!formik.dirty || formik.isSubmitting}
+          className="h-control px-5"
+        >
+          {formik.isSubmitting ? (
+            <LoaderCircle aria-hidden="true" className="animate-spin" />
+          ) : null}
+          {formik.isSubmitting ? "Saving…" : "Save changes"}
+        </Button>
+      </div>
     </form>
   );
 }

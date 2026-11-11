@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormik } from "formik";
+import { LoaderCircle, Plus } from "lucide-react";
 import type { Route } from "next";
 import { useRouter } from "next/navigation";
 
@@ -36,8 +37,12 @@ export function validateDoctorValues(values: DoctorInput) {
 
 export function DoctorForm({
   submit,
+  onSuccess,
+  onCancel,
 }: {
   submit?: (input: DoctorInput) => Promise<DoctorFormResult>;
+  onSuccess?: (doctorId: string) => void;
+  onCancel?: () => void;
 }) {
   const router = useRouter();
   const formik = useFormik({
@@ -47,6 +52,11 @@ export function DoctorForm({
       if (!submit) return;
       const result = await submit(doctorInputSchema.parse(values));
       if (result.success) {
+        helpers.resetForm();
+        if (onSuccess) {
+          onSuccess(result.doctorId);
+          return;
+        }
         router.push(`/doctors/${result.doctorId}` as Route);
         return;
       }
@@ -69,13 +79,17 @@ export function DoctorForm({
   ];
 
   return (
-    <form onSubmit={formik.handleSubmit} noValidate className="max-w-2xl space-y-5">
+    <form onSubmit={formik.handleSubmit} noValidate className="space-y-4">
       {formik.status && (
-        <p role="alert" className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive">
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive"
+        >
           {formik.status}
         </p>
       )}
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         {fields.map((field) => {
           const error = formik.touched[field.name] ? formik.errors[field.name] : undefined;
           return (
@@ -102,9 +116,27 @@ export function DoctorForm({
           );
         })}
       </div>
-      <Button type="submit" disabled={!submit || formik.isSubmitting} className="h-control px-5">
-        {formik.isSubmitting ? "Creating doctor…" : "Create doctor"}
-      </Button>
+      <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row sm:justify-end">
+        {onCancel && (
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onCancel}
+            disabled={formik.isSubmitting}
+            className="h-control px-5"
+          >
+            Cancel
+          </Button>
+        )}
+        <Button type="submit" disabled={!submit || formik.isSubmitting} className="h-control px-5">
+          {formik.isSubmitting ? (
+            <LoaderCircle aria-hidden="true" className="animate-spin" />
+          ) : (
+            <Plus aria-hidden="true" />
+          )}
+          {formik.isSubmitting ? "Creating doctor…" : "Create doctor"}
+        </Button>
+      </div>
     </form>
   );
 }

@@ -1,11 +1,8 @@
-import { Plus } from "lucide-react";
-import Link from "next/link";
-import { DoctorFilters } from "@/components/doctors/doctor-filters";
+import { CreateDoctorDialog } from "@/components/doctors/create-doctor-dialog";
 import { DoctorPagination } from "@/components/doctors/doctor-pagination";
-import { DoctorSearch } from "@/components/doctors/doctor-search";
+import { DoctorToolbar } from "@/components/doctors/doctor-toolbar";
 import { DoctorsList } from "@/components/doctors/doctors-list";
 import { PageHeader } from "@/components/layout/page-navigation";
-import { Button } from "@/components/ui/button";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
 import { parseDoctorListQuery } from "@/lib/doctors/doctor-query";
 
@@ -18,40 +15,17 @@ export default async function DoctorsPage({ searchParams }: PageProps<"/doctors"
   return (
     <section aria-labelledby="doctors-heading">
       <PageHeader
-        title="Doctor directory"
-        description={`${meta.total.toLocaleString()} ${meta.total === 1 ? "doctor" : "doctors"}`}
-        actions={
-          <Button asChild>
-            <Link href="/doctors/new">
-              <Plus aria-hidden="true" />
-              Add doctor
-            </Link>
-          </Button>
-        }
+        eyebrow="Directory"
+        title="Doctors"
+        description={`${meta.total.toLocaleString()} ${meta.total === 1 ? "doctor" : "doctors"} total`}
+        actions={<CreateDoctorDialog />}
       />
       <h2 id="doctors-heading" className="sr-only">
         Doctors
       </h2>
-      <div className="mt-6 rounded-[10px] border bg-card p-5">
-        <DoctorSearch
-          value={query.search}
-          preservedQuery={{
-            specialization: query.specialization,
-            hospital: query.hospital,
-            createdFrom: query.createdFrom?.slice(0, 10),
-            createdTo: query.createdTo?.slice(0, 10),
-            sortBy: query.sortBy,
-            sortOrder: query.sortOrder,
-          }}
-        />
-      </div>
-      <div className="mt-4">
-        <DoctorFilters query={query} />
-      </div>
-      <div className="mt-6">
+      <DoctorToolbar query={query} />
+      <div className="mt-3 overflow-hidden rounded-[10px] border bg-card shadow-card">
         <DoctorsList doctors={doctors} />
-      </div>
-      <div className="mt-6">
         <DoctorPagination meta={meta} query={query} />
       </div>
     </section>

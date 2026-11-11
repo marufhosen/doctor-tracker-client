@@ -40,7 +40,7 @@ export function MobileNavigation() {
                 </SheetDescription>
               </div>
             </div>
-            <nav aria-label="Mobile navigation" className="mt-8">
+            <nav aria-label="Mobile navigation" className="mt-6">
               <ul className="space-y-1">
                 {primaryNavigation.map(({ href, label, icon: Icon }) => {
                   const active = isNavigationItemActive(pathname, href);

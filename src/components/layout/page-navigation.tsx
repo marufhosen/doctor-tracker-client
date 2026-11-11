@@ -44,6 +44,7 @@ export function PageBreadcrumbs({ items }: { items: readonly BreadcrumbItem[] })
 
 type PageHeaderProps = {
   title: string;
+  eyebrow?: string;
   description?: string;
   breadcrumbs?: readonly BreadcrumbItem[];
   actions?: ReactNode;
@@ -52,16 +53,22 @@ type PageHeaderProps = {
 
 export function PageHeader({
   title,
+  eyebrow,
   description,
   breadcrumbs,
   actions,
   kind = "list",
 }: PageHeaderProps) {
   return (
-    <header data-page-kind={kind} className="mb-7 space-y-3">
+    <header data-page-kind={kind} className="mb-5 space-y-2">
       {breadcrumbs && breadcrumbs.length > 0 && <PageBreadcrumbs items={breadcrumbs} />}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 space-y-1">
+          {eyebrow && (
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              {eyebrow}
+            </p>
+          )}
           <h1 className="text-3xl sm:text-[2rem]">{title}</h1>
           {description && <p className="max-w-2xl text-sm text-muted-foreground">{description}</p>}
         </div>

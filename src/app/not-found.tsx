@@ -13,7 +13,7 @@ export default function NotFound() {
         <p className="mt-2 text-muted-foreground">
           It may have been removed, or the address may be incorrect.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
           <Button asChild>
             <Link href="/patients">View patients</Link>
           </Button>

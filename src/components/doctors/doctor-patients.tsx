@@ -17,10 +17,10 @@ export function DoctorPatients({
   return (
     <section
       aria-labelledby="patients-heading"
-      className="mt-6 overflow-hidden rounded-[10px] border bg-card shadow-card"
+      className="mt-4 overflow-hidden rounded-[10px] border bg-card shadow-card"
     >
-      <div className="flex items-baseline gap-4 px-5 py-5">
-        <h2 id="patients-heading" className="text-lg">
+      <div className="flex items-baseline gap-3 px-4 py-3">
+        <h2 id="patients-heading" className="text-base">
           Assigned patients
         </h2>
         <p className="text-sm text-muted-foreground">{meta.total} patients</p>
@@ -33,22 +33,33 @@ export function DoctorPatients({
         <>
           <div className="hidden md:block">
             <table className="w-full border-collapse text-left text-sm">
-              <thead className="bg-muted text-xs font-medium text-muted-foreground">
+              <caption className="sr-only">Patients assigned to this doctor</caption>
+              <thead className="border-y bg-muted/60 text-xs text-muted-foreground">
                 <tr>
-                  <th className="px-5 py-2">Patient ID</th>
-                  <th className="px-5 py-2">Patient name</th>
-                  <th className="px-5 py-2">Condition</th>
-                  <th className="px-5 py-2">Contact</th>
-                  <th className="px-5 py-2">Action</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">
+                    Patient ID
+                  </th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">
+                    Patient name
+                  </th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">
+                    Condition
+                  </th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">
+                    Contact
+                  </th>
+                  <th scope="col" className="px-4 py-2.5">
+                    <span className="sr-only">Actions</span>
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y">
                 {patients.map((patient) => (
-                  <tr key={patient.id}>
-                    <td className="px-5 py-4 text-muted-foreground">
+                  <tr key={patient.id} className="transition-colors hover:bg-muted/30">
+                    <td className="px-4 py-2.5 text-muted-foreground">
                       PT-{patient.id.slice(-6).toUpperCase()}
                     </td>
-                    <td className="px-5 py-4 font-medium">
+                    <td className="px-4 py-2.5 font-medium">
                       <Link
                         href={`/patients/${patient.id}` as Route}
                         className="hover:text-primary"
@@ -56,11 +67,11 @@ export function DoctorPatients({
                         {patient.name}
                       </Link>
                     </td>
-                    <td className="px-5 py-4 text-muted-foreground">{patient.condition}</td>
-                    <td className="px-5 py-4 text-muted-foreground">
+                    <td className="px-4 py-2.5 text-muted-foreground">{patient.condition}</td>
+                    <td className="px-4 py-2.5 text-muted-foreground">
                       {patient.email ?? patient.phone ?? "—"}
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-2.5">
                       <RemovePatientButton
                         doctorId={doctorId}
                         patientId={patient.id}
@@ -74,7 +85,7 @@ export function DoctorPatients({
           </div>
           <ul className="divide-y md:hidden">
             {patients.map((patient) => (
-              <li key={patient.id} className="grid gap-2 px-5 py-4">
+              <li key={patient.id} className="grid gap-2 px-4 py-3">
                 <Link
                   href={`/patients/${patient.id}` as Route}
                   className="font-medium hover:text-primary"
@@ -93,7 +104,7 @@ export function DoctorPatients({
         </>
       )}
       {meta.totalPages > 0 && (
-        <p className="border-t px-5 py-4 text-sm text-muted-foreground">
+        <p className="border-t px-4 py-3 text-sm text-muted-foreground">
           Page {meta.page} of {meta.totalPages}
         </p>
       )}

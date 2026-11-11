@@ -1,11 +1,8 @@
-import { UserPlus } from "lucide-react";
-import type { Route } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { DoctorPatients } from "@/components/doctors/doctor-patients";
 import { PageHeader } from "@/components/layout/page-navigation";
-import { Button } from "@/components/ui/button";
+import { CreatePatientDialog } from "@/components/patients/create-patient-dialog";
 import { ApiClientError } from "@/lib/api/errors";
 import type { Doctor } from "@/lib/api/schemas/doctor";
 import { getDoctorDetail, getDoctorPatients } from "@/lib/doctors/doctor.service.server";
@@ -46,22 +43,21 @@ export default async function DoctorDetailPage({
         description="Doctors / Patient list"
         breadcrumbs={[{ label: "Doctors", href: "/doctors" }, { label: doctor.name }]}
         actions={
-          <Button asChild>
-            <Link href={`/doctors/${doctor.id}/patients/new` as Route}>
-              <UserPlus aria-hidden="true" />
-              Add patient
-            </Link>
-          </Button>
+          <CreatePatientDialog
+            doctorId={doctor.id}
+            doctorName={doctor.name}
+            triggerLabel="Add patient"
+          />
         }
       />
       <section
         aria-labelledby="profile-heading"
-        className="rounded-[10px] border bg-card p-5 shadow-card sm:p-6"
+        className="rounded-[10px] border bg-card p-4 shadow-card sm:p-5"
       >
         <h2 id="profile-heading" className="sr-only">
           Doctor profile
         </h2>
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <span className="grid size-14 shrink-0 place-items-center rounded-full bg-secondary text-lg font-semibold text-primary">
             {initials}
           </span>
