@@ -10,3 +10,13 @@ test("parses valid pagination and safely defaults invalid URL values", () => {
     limit: 10,
   });
 });
+
+test("normalizes search while ignoring repeated or blank values", () => {
+  expect(parseDoctorListQuery({ search: "  Samira Khan  " })).toEqual({
+    search: "Samira Khan",
+    page: 1,
+    limit: 10,
+  });
+  expect(parseDoctorListQuery({ search: ["Samira", "Khan"] })).toEqual({ page: 1, limit: 10 });
+  expect(parseDoctorListQuery({ search: "   " })).toEqual({ page: 1, limit: 10 });
+});
