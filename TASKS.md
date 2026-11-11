@@ -48,7 +48,7 @@ and stop. “Accept” is the task's acceptance criteria.
 ## Phase 5 — Dashboard
 
 - [x] **31 Integrate summary.** Validated no-store service. **Accept:** valid/auth/error cases tested. **Commit:** `feat: integrate dashboard summary`.
-- [ ] **32 Create metric cards.** Render real totals. **Accept:** zero differs from failure. **Commit:** `feat: add dashboard metrics`.
+- [x] **32 Create metric cards.** Render real totals. **Accept:** zero differs from failure. **Commit:** `feat: add dashboard metrics`.
 - [ ] **33 Integrate patients-per-doctor.** Validated analytics service. **Accept:** zero-patient doctors retained. **Commit:** `feat: integrate doctor analytics`.
 - [ ] **34 Create doctor chart.** Small Recharts boundary plus accessible summary. **Accept:** labels, zero, resize, alternative pass. **Commit:** `feat: chart patients by doctor`.
 - [ ] **35 Integrate trends.** Validate URL date range and UTC payload. **Accept:** invalid range never reaches backend. **Commit:** `feat: integrate dashboard trends`.

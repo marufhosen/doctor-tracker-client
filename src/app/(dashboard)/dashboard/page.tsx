@@ -1,7 +1,12 @@
-export default function DashboardPage() {
+import { MetricCards } from "@/components/dashboard/metric-cards";
+import { getDashboardSummary } from "@/lib/dashboard/dashboard.service.server";
+
+export default async function DashboardPage() {
+  const summary = await getDashboardSummary();
+
   return (
-    <section aria-label="Dashboard overview">
-      <p className="text-muted-foreground">Dashboard insights will appear here.</p>
-    </section>
+    <div className="space-y-6 lg:space-y-8">
+      <MetricCards summary={summary} />
+    </div>
   );
 }
