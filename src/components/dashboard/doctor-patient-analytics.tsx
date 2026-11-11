@@ -16,8 +16,16 @@ export function DoctorPatientAnalytics({ doctors }: { doctors: DoctorPatientCoun
         </p>
       </div>
       <div className="p-4 sm:p-6">
-        <DoctorPatientChart data={doctors} />
-        <DoctorAnalyticsTable doctors={doctors} />
+        {doctors.length === 0 ? (
+          <div className="grid min-h-48 place-items-center text-center text-sm text-muted-foreground">
+            No doctors are available for patient assignment analytics yet.
+          </div>
+        ) : (
+          <>
+            <DoctorPatientChart data={doctors} />
+            <DoctorAnalyticsTable doctors={doctors} />
+          </>
+        )}
       </div>
     </section>
   );

@@ -1,7 +1,10 @@
 import { expect, test } from "bun:test";
 import { render, screen } from "@testing-library/react";
 
-import { DoctorAnalyticsTable } from "@/components/dashboard/doctor-patient-analytics";
+import {
+  DoctorAnalyticsTable,
+  DoctorPatientAnalytics,
+} from "@/components/dashboard/doctor-patient-analytics";
 
 test("provides a labelled data alternative and retains zero-patient doctors", () => {
   render(
@@ -18,4 +21,12 @@ test("provides a labelled data alternative and retains zero-patient doctors", ()
   );
   expect(screen.getByRole("rowheader", { name: "Dr. Zero" }).isConnected).toBe(true);
   expect(screen.getAllByRole("cell").map((cell) => cell.textContent)).toEqual(["0", "4"]);
+});
+
+test("distinguishes an empty doctor collection from zero-patient data", () => {
+  render(<DoctorPatientAnalytics doctors={[]} />);
+  expect(
+    screen.getByText("No doctors are available for patient assignment analytics yet.").isConnected,
+  ).toBe(true);
+  expect(screen.queryByRole("table")).toBeNull();
 });

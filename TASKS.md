@@ -53,7 +53,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **34 Create doctor chart.** Small Recharts boundary plus accessible summary. **Accept:** labels, zero, resize, alternative pass. **Commit:** `feat: chart patients by doctor`.
 - [x] **35 Integrate trends.** Validate URL date range and UTC payload. **Accept:** invalid range never reaches backend. **Commit:** `feat: integrate dashboard trends`.
 - [x] **36 Create trend charts.** Real series and URL range controls. **Accept:** timezone and empty ranges correct. **Commit:** `feat: chart dashboard trends`.
-- [ ] **37 Add dashboard states.** Independent streaming skeleton/empty/error states. **Accept:** one section failure does not block all. **Commit:** `feat: add dashboard feedback states`.
+- [x] **37 Add dashboard states.** Independent streaming skeleton/empty/error states. **Accept:** one section failure does not block all. **Commit:** `feat: add dashboard feedback states`.
 
 ## Phase 6 — Doctors
 
