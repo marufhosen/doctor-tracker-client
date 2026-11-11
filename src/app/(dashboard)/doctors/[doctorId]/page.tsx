@@ -79,7 +79,11 @@ export default async function DoctorDetailPage({
           ))}
         </dl>
       </section>
-      <DoctorPatients patients={patientResult.patients} meta={patientResult.meta} />
+      <DoctorPatients
+        doctorId={doctor.id}
+        patients={patientResult.patients}
+        meta={patientResult.meta}
+      />
     </>
   );
 }

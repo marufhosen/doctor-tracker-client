@@ -1,7 +1,16 @@
+import { RemovePatientButton } from "@/components/doctors/remove-patient-button";
 import type { PaginationMeta } from "@/lib/api/schemas/common";
 import type { Patient } from "@/lib/api/schemas/patient";
 
-export function DoctorPatients({ patients, meta }: { patients: Patient[]; meta: PaginationMeta }) {
+export function DoctorPatients({
+  doctorId,
+  patients,
+  meta,
+}: {
+  doctorId: string;
+  patients: Patient[];
+  meta: PaginationMeta;
+}) {
   return (
     <section
       aria-labelledby="patients-heading"
@@ -22,10 +31,15 @@ export function DoctorPatients({ patients, meta }: { patients: Patient[]; meta: 
           {patients.map((patient) => (
             <li
               key={patient.id}
-              className="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:justify-between"
+              className="grid gap-2 py-3 sm:grid-cols-[1fr_1fr_auto] sm:items-center"
             >
               <span className="font-medium">{patient.name}</span>
               <span className="text-sm text-muted-foreground">{patient.condition}</span>
+              <RemovePatientButton
+                doctorId={doctorId}
+                patientId={patient.id}
+                patientName={patient.name}
+              />
             </li>
           ))}
         </ul>
