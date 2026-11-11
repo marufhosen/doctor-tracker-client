@@ -82,7 +82,7 @@ function LoginPageShell({ returnTo = "/dashboard" }: { returnTo?: string }) {
             <p className="mt-2 text-sm text-muted-foreground">
               Enter your credentials to login to your account.
             </p>
-            <div className="mt-6">
+            <div className="mt-4">
               <LoginForm returnTo={returnTo} />
             </div>
             <p className="mt-5 text-center text-xs text-muted-foreground">

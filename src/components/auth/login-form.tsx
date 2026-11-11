@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormik } from "formik";
-import { ArrowRight, Eye, EyeOff, LoaderCircle } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, KeyRound, LoaderCircle } from "lucide-react";
 import type { Route } from "next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -12,6 +12,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { type LoginInput, loginInputSchema } from "@/lib/api/schemas/auth";
+
+const demoCredentials = {
+  email: "admin@example.com",
+  password: "DoctorTracker-2026!",
+} as const;
 
 export function LoginForm({ returnTo }: { returnTo: string }) {
   const router = useRouter();
@@ -54,6 +59,41 @@ export function LoginForm({ returnTo }: { returnTo: string }) {
           {formError}
         </div>
       ) : null}
+      <div className="flex items-center justify-between gap-3 rounded-lg border border-primary/15 bg-primary/5 px-3 py-2">
+        <dl className="min-w-0 grid gap-1 text-[11px] leading-4">
+          <div className="flex min-w-0 items-center gap-1.5">
+            <dt className="w-12 shrink-0 text-muted-foreground">Email</dt>
+            <dd className="truncate font-medium text-foreground" title={demoCredentials.email}>
+              {demoCredentials.email}
+            </dd>
+          </div>
+          <div className="flex min-w-0 items-center gap-1.5">
+            <dt className="flex w-12 shrink-0 items-center gap-1 text-muted-foreground">
+              <KeyRound aria-hidden="true" className="size-3" />
+              Pass
+            </dt>
+            <dd className="truncate font-mono font-medium text-foreground">
+              {demoCredentials.password}
+            </dd>
+          </div>
+        </dl>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="h-7 shrink-0 rounded-md bg-background px-2 text-[11px]"
+          onClick={() => {
+            formik.setValues({
+              email: demoCredentials.email,
+              password: demoCredentials.password,
+              rememberMe: false,
+            });
+            setFormError(undefined);
+          }}
+        >
+          Use demo
+        </Button>
+      </div>
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input
