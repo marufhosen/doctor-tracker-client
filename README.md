@@ -2,6 +2,50 @@
 
 Administrative frontend for the Doctor Tracker API. It provides authenticated dashboard analytics, doctor management, and doctor-scoped and global patient workflows.
 
+## UI screenshots
+
+The following views were captured from the running application with seeded data.
+No credentials or authentication tokens are included in the images.
+
+### Desktop
+
+| Login | Dashboard |
+| --- | --- |
+| ![Desktop login](docs/screenshots/login-desktop.png) | ![Desktop dashboard](docs/screenshots/dashboard-desktop.png) |
+
+| Doctors | Patients |
+| --- | --- |
+| ![Desktop doctor directory](docs/screenshots/doctors-desktop.png) | ![Desktop patient directory](docs/screenshots/patients-desktop.png) |
+
+| Doctor details | Patient details |
+| --- | --- |
+| ![Desktop doctor details](docs/screenshots/doctor-details-desktop.png) | ![Desktop patient details](docs/screenshots/patient-details-desktop.png) |
+
+### Mobile
+
+<table>
+  <tr>
+    <th>Login</th>
+    <th>Dashboard</th>
+    <th>Doctors</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/login-mobile.png" alt="Mobile login" width="260"></td>
+    <td><img src="docs/screenshots/dashboard-mobile.png" alt="Mobile dashboard" width="260"></td>
+    <td><img src="docs/screenshots/doctors-mobile.png" alt="Mobile doctor directory" width="260"></td>
+  </tr>
+  <tr>
+    <th>Patients</th>
+    <th>Doctor details</th>
+    <th>Patient details</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/patients-mobile.png" alt="Mobile patient directory" width="260"></td>
+    <td><img src="docs/screenshots/doctor-details-mobile.png" alt="Mobile doctor details" width="260"></td>
+    <td><img src="docs/screenshots/patient-details-mobile.png" alt="Mobile patient details" width="260"></td>
+  </tr>
+</table>
+
 ## Requirements
 
 - Bun 1.3 or newer
