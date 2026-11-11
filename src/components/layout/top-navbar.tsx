@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { getPageContext } from "@/components/layout/page-context";
+import { PageBreadcrumbs } from "@/components/layout/page-navigation";
 
 export function TopNavbar({
   navigationControl,
@@ -18,9 +19,9 @@ export function TopNavbar({
     <div className="flex min-h-16 items-center gap-3 py-2">
       {navigationControl}
       <div className="min-w-0">
-        <p className="hidden text-xs font-medium uppercase tracking-wider text-muted-foreground sm:block">
-          {context.eyebrow}
-        </p>
+        <div className="hidden sm:block">
+          <PageBreadcrumbs items={[{ label: context.eyebrow }, { label: context.title }]} />
+        </div>
         <h1 className="truncate text-lg leading-tight sm:text-xl">{context.title}</h1>
       </div>
       <div className="ml-auto flex items-center">{profileMenu}</div>

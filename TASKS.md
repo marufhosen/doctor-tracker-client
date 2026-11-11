@@ -43,7 +43,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **27 Create top navbar.** Page context and sidebar control only. **Accept:** responsive semantic heading/breadcrumb area. **Commit:** `feat: add top navigation`.
 - [x] **28 Create profile dropdown.** Safe identity and logout. **Accept:** keyboard/focus behavior passes. **Commit:** `feat: add profile menu`.
 - [x] **29 Create mobile navigation.** Accessible Sheet with active/close behavior. **Accept:** focus trap and touch targets pass. **Commit:** `feat: add mobile navigation`.
-- [ ] **30 Add headers/breadcrumbs.** Shared list/detail/form primitives. **Accept:** responsive and semantic. **Commit:** `feat: add page navigation primitives`.
+- [x] **30 Add headers/breadcrumbs.** Shared list/detail/form primitives. **Accept:** responsive and semantic. **Commit:** `feat: add page navigation primitives`.
 
 ## Phase 5 — Dashboard
 
