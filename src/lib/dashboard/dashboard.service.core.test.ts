@@ -1,7 +1,11 @@
 import { expect, test } from "bun:test";
 
 import type { ApiClient } from "@/lib/api/client.core";
-import { loadDashboardSummary, loadPatientsByDoctor } from "@/lib/dashboard/dashboard.service.core";
+import {
+  loadDashboardSummary,
+  loadDashboardTrends,
+  loadPatientsByDoctor,
+} from "@/lib/dashboard/dashboard.service.core";
 
 const cookies = { doctor_tracker_access: "access-token" };
 
@@ -70,4 +74,47 @@ test("retains doctors with zero patients in validated analytics", async () => {
     cookies,
     cache: "no-store",
   });
+});
+
+test("normalizes trend ranges to UTC before requesting validated analytics", async () => {
+  let requestedPath = "";
+  const client = {
+    request: async ({ path }: { path: string }) => {
+      requestedPath = path;
+      return {
+        data: {
+          success: true as const,
+          message: "Dashboard trends retrieved successfully",
+          data: { trends: { doctors: [], patients: [] } },
+        },
+        headers: new Headers(),
+        status: 200,
+      };
+    },
+  } as unknown as ApiClient;
+
+  await loadDashboardTrends(client, cookies, {
+    from: "2026-11-01T00:00:00+06:00",
+    to: "2026-11-30",
+  });
+
+  expect(requestedPath).toBe(
+    "dashboard/trends?from=2026-10-31T18%3A00%3A00.000Z&to=2026-11-30T00%3A00%3A00.000Z",
+  );
+});
+
+test("rejects invalid and reversed ranges before reaching the backend", async () => {
+  let requestCount = 0;
+  const client = {
+    request: async () => {
+      requestCount += 1;
+      throw new Error("must not run");
+    },
+  } as unknown as ApiClient;
+
+  await expect(
+    loadDashboardTrends(client, cookies, { from: "2026-12-01", to: "2026-11-01" }),
+  ).rejects.toThrow("from must be before or equal to to");
+  await expect(loadDashboardTrends(client, cookies, { from: "invalid" })).rejects.toThrow();
+  expect(requestCount).toBe(0);
 });
