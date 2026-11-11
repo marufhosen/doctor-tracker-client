@@ -8,7 +8,7 @@ type ApplicationShellProps = {
 
 export function ApplicationShell({ children, navigation, topbar }: ApplicationShellProps) {
   return (
-    <div className="min-h-svh bg-background lg:grid lg:grid-cols-[17rem_minmax(0,1fr)]">
+    <div className="min-h-svh bg-background transition-[grid-template-columns] lg:grid lg:grid-cols-[17rem_minmax(0,1fr)] lg:has-[[data-collapsed=true]]:grid-cols-[5rem_minmax(0,1fr)]">
       <a
         href="#main-content"
         className="fixed left-4 top-4 z-50 -translate-y-24 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg transition-transform focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
