@@ -16,6 +16,7 @@ const adminSession = { status: "authenticated" as const, user: admin };
 
 test("administrative journey covers authentication, navigation, doctor and patient CRUD", async () => {
   expect(getProxyDecision("/patients", false, false)).toBe("login");
+  expect(getProxyDecision("/patients", false, true)).toBe("refresh");
   const login = await performLogin(
     { email: admin.email, password: "secret", rememberMe: false },
     "http://localhost:3000",
