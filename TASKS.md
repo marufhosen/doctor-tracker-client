@@ -65,7 +65,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **43 Build doctor form.** Formik/shared Zod for supported fields. **Accept:** mobile, focus, errors, pending pass. **Commit:** `feat: build doctor form`.
 - [x] **44 Implement create doctor action.** Revalidate input/auth/ADMIN, CSRF, errors, paths. **Accept:** success/field failures tested. **Commit:** `feat: create doctors through server action`.
 - [x] **45 Implement doctor details.** Validated ID, profile, count/list, not-found. **Accept:** invalid/missing/valid render correctly. **Commit:** `feat: add doctor details page`.
-- [ ] **46 Integrate doctor patients.** Nested URL search/filter/sort/page service. **Accept:** independent meta/empty state. **Commit:** `feat: integrate doctor patient listing`.
+- [x] **46 Integrate doctor patients.** Nested URL search/filter/sort/page service. **Accept:** independent meta/empty state. **Commit:** `feat: integrate doctor patient listing`.
 - [ ] **47 Add doctor patient actions.** ADMIN add/remove with confirmation/revalidation. **Accept:** no reassignment feature. **Commit:** `feat: add doctor patient actions`.
 
 ## Phase 7 — Patients

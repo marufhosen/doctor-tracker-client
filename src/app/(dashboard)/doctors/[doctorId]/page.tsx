@@ -1,16 +1,26 @@
 import { Building2, CalendarDays, Mail, Phone, Stethoscope } from "lucide-react";
 import { notFound } from "next/navigation";
 
+import { DoctorPatients } from "@/components/doctors/doctor-patients";
 import { PageHeader } from "@/components/layout/page-navigation";
 import { ApiClientError } from "@/lib/api/errors";
 import type { Doctor } from "@/lib/api/schemas/doctor";
-import { getDoctorDetail } from "@/lib/doctors/doctor.service.server";
+import { getDoctorDetail, getDoctorPatients } from "@/lib/doctors/doctor.service.server";
+import { parseDoctorPatientQuery } from "@/lib/doctors/doctor-patient-query";
 
-export default async function DoctorDetailPage({ params }: PageProps<"/doctors/[doctorId]">) {
+export default async function DoctorDetailPage({
+  params,
+  searchParams,
+}: PageProps<"/doctors/[doctorId]">) {
   const { doctorId } = await params;
+  const patientQuery = parseDoctorPatientQuery(await searchParams);
   let doctor: Doctor;
+  let patientResult: Awaited<ReturnType<typeof getDoctorPatients>>;
   try {
-    doctor = await getDoctorDetail(doctorId);
+    [doctor, patientResult] = await Promise.all([
+      getDoctorDetail(doctorId),
+      getDoctorPatients(doctorId, patientQuery),
+    ]);
   } catch (error) {
     if (error instanceof ApiClientError && error.kind !== "not_found") throw error;
     notFound();
@@ -69,6 +79,7 @@ export default async function DoctorDetailPage({ params }: PageProps<"/doctors/[
           ))}
         </dl>
       </section>
+      <DoctorPatients patients={patientResult.patients} meta={patientResult.meta} />
     </>
   );
 }
