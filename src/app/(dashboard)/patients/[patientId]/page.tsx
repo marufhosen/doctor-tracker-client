@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/layout/page-navigation";
+import { PatientDeleteControl } from "@/components/patients/patient-delete-control";
 import { Button } from "@/components/ui/button";
 import { ApiClientError } from "@/lib/api/errors";
 import type { Patient } from "@/lib/api/schemas/patient";
@@ -55,12 +56,15 @@ export default async function PatientDetailPage({ params }: PageProps<"/patients
         description="Patient record and assigned doctor."
         breadcrumbs={[{ label: "Patients", href: "/patients" }, { label: patient.name }]}
         actions={
-          <Button asChild variant="outline">
-            <Link href={`/patients/${patient.id}/edit` as Route}>
-              <Pencil aria-hidden="true" />
-              Edit patient
-            </Link>
-          </Button>
+          <>
+            <Button asChild variant="outline">
+              <Link href={`/patients/${patient.id}/edit` as Route}>
+                <Pencil aria-hidden="true" />
+                Edit patient
+              </Link>
+            </Button>
+            <PatientDeleteControl patientId={patient.id} patientName={patient.name} />
+          </>
         }
       />
       <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">

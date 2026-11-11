@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test";
-import { performUpdatePatient } from "@/actions/patient.core";
+import { performDeletePatient, performUpdatePatient } from "@/actions/patient.core";
+import { ApiClientError } from "@/lib/api/errors";
 import type { Patient } from "@/lib/api/schemas/patient";
 
 const id = "507f1f77bcf86cd799439011";
@@ -20,6 +21,18 @@ test("updates a validated patient for an administrator", async () => {
   expect(
     await performUpdatePatient(id, { condition: "Stable" }, admin, async () => patient),
   ).toEqual({ success: true, patient });
+});
+
+test("deletes a patient and treats an already missing record as success", async () => {
+  expect(await performDeletePatient(id, admin, async () => patient.doctorId)).toEqual({
+    success: true,
+    doctorId: patient.doctorId,
+  });
+  expect(
+    await performDeletePatient(id, admin, async () => {
+      throw new ApiClientError("not_found", "missing");
+    }),
+  ).toEqual({ success: true });
 });
 
 test("rejects doctor assignment and does not call the API", async () => {
