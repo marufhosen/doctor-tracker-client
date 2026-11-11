@@ -95,4 +95,4 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **67 Review security/auth.** Threat-model cookies, CSRF, redirects, refresh, roles, validation, leakage. **Accept:** findings fixed with regressions. **Commit:** `fix: harden frontend security`.
 - [x] **68 Add E2E tests.** Cover auth, navigation, doctor creation, patient CRUD, filters, denial. **Accept:** deterministic controlled-backend suite passes. **Commit:** `test: add administrative end-to-end flows`.
 - [x] **69 Verify production build.** Run and fix full type/lint/test/build. **Accept:** all pass cleanly. **Commit:** `chore: verify production build`.
-- [ ] **70 Finalize documentation.** Setup, env, backend, scripts, architecture, auth, tests, limitations. **Accept:** new contributor can run/verify without secrets. **Commit:** `docs: finalize client documentation`.
+- [x] **70 Finalize documentation.** Setup, env, backend, scripts, architecture, auth, tests, limitations. **Accept:** new contributor can run/verify without secrets. **Commit:** `docs: finalize client documentation`.
