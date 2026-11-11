@@ -1,10 +1,14 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { type LoginActionResult, performLogin } from "@/actions/auth.core";
+import { performLogout } from "@/actions/logout.core";
 import { apiClient } from "@/lib/api/client.server";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import type { LoginInput } from "@/lib/api/schemas/auth";
 import { userResponseSchema } from "@/lib/api/schemas/auth";
+import { nullResponseSchema } from "@/lib/api/schemas/common";
 import {
   clearMirroredAuthCookies,
   getAuthCookies,
@@ -62,4 +66,32 @@ export async function refreshSessionAction(): Promise<{ success: boolean }> {
     await clearMirroredAuthCookies();
     return { success: false };
   }
+}
+
+export async function logoutAction(): Promise<never> {
+  const authCookies = await getAuthCookies();
+  let origin = "";
+  try {
+    origin = await getTrustedRequestOrigin();
+  } catch {
+    // Local cookies are still cleared when a trusted Origin is unavailable.
+  }
+  try {
+    await performLogout(authCookies, origin, {
+      revoke: async (cookies, trustedOrigin, csrfToken) => {
+        await apiClient.request({
+          path: apiEndpoints.auth.logout,
+          method: "POST",
+          cookies,
+          headers: { Origin: trustedOrigin, "X-CSRF-Token": csrfToken },
+          responseSchema: nullResponseSchema,
+        });
+      },
+      clear: clearMirroredAuthCookies,
+    });
+  } catch {
+    // Revocation failure must not leave frontend-owned cookies behind.
+  }
+  revalidatePath("/", "layout");
+  redirect("/login");
 }
