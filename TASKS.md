@@ -34,7 +34,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **21 Implement refresh.** Cookie-mutating action, exact rotation, one retry, revoked handling, render coordinator. **Accept:** recovery has no loops. **Commit:** `feat: implement session refresh`.
 - [x] **22 Coordinate concurrent refresh.** Prevent duplicate rotation without cross-user globals. **Accept:** concurrent simulation yields one rotation. **Commit:** `feat: coordinate concurrent token refresh`.
 - [x] **23 Implement logout.** Revoke with CSRF, clear mirrors, invalidate, redirect. **Accept:** idempotent and tested. **Commit:** `feat: add secure logout`.
-- [ ] **24 Add auth integration tests.** Cover login, remember, guards, CSRF, rotation, concurrency, logout. **Accept:** flows pass without token exposure. **Commit:** `test: cover authentication flows`.
+- [x] **24 Add auth integration tests.** Cover login, remember, guards, CSRF, rotation, concurrency, logout. **Accept:** flows pass without token exposure. **Commit:** `test: cover authentication flows`.
 
 ## Phase 4 — Application shell
 

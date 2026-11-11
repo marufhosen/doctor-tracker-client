@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { type LoginActionResult, performLogin } from "@/actions/auth.core";
 import { performLogout } from "@/actions/logout.core";
+import { performRefresh } from "@/actions/refresh.core";
 import { apiClient } from "@/lib/api/client.server";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import type { LoginInput } from "@/lib/api/schemas/auth";
@@ -43,25 +44,20 @@ export async function loginAction(input: unknown): Promise<LoginActionResult> {
 export async function refreshSessionAction(): Promise<{ success: boolean }> {
   try {
     const authCookies = await getAuthCookies();
-    const csrfToken = authCookies.doctor_tracker_csrf;
-    if (!authCookies.doctor_tracker_refresh || !csrfToken) {
-      await clearMirroredAuthCookies();
-      return { success: false };
-    }
-    const response = await apiClient.request({
-      path: apiEndpoints.auth.refresh,
-      method: "POST",
-      cookies: authCookies,
-      headers: { Origin: await getTrustedRequestOrigin(), "X-CSRF-Token": csrfToken },
-      responseSchema: userResponseSchema,
+    return performRefresh(authCookies, await getTrustedRequestOrigin(), {
+      rotate: async (cookies, origin, csrfToken) => {
+        const response = await apiClient.request({
+          path: apiEndpoints.auth.refresh,
+          method: "POST",
+          cookies,
+          headers: { Origin: origin, "X-CSRF-Token": csrfToken },
+          responseSchema: userResponseSchema,
+        });
+        return { user: response.data.data.user, headers: response.headers };
+      },
+      synchronize: synchronizeAuthCookies,
+      clear: clearMirroredAuthCookies,
     });
-    if (response.data.data.user.role !== "ADMIN") {
-      await clearMirroredAuthCookies();
-      return { success: false };
-    }
-    if ((await synchronizeAuthCookies(response.headers)) !== 3)
-      throw new Error("Rotation incomplete");
-    return { success: true };
   } catch {
     await clearMirroredAuthCookies();
     return { success: false };

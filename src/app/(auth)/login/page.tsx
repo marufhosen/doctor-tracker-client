@@ -1,14 +1,32 @@
 import { Activity, HeartPulse, ShieldCheck } from "lucide-react";
+import { Suspense } from "react";
 
 import { LoginForm } from "@/components/auth/login-form";
 import { getSafeReturnPath } from "@/lib/auth/redirect";
 
-export default async function LoginPage({
+export default function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string | string[] }>;
+}) {
+  return (
+    <Suspense fallback={<LoginPageShell />}>
+      <LoginPageContent searchParams={searchParams} />
+    </Suspense>
+  );
+}
+
+async function LoginPageContent({
   searchParams,
 }: {
   searchParams: Promise<{ next?: string | string[] }>;
 }) {
   const returnTo = getSafeReturnPath((await searchParams).next);
+
+  return <LoginPageShell returnTo={returnTo} />;
+}
+
+function LoginPageShell({ returnTo = "/dashboard" }: { returnTo?: string }) {
   return (
     <main className="grid min-h-svh bg-background lg:grid-cols-[1.05fr_0.95fr]">
       <section className="relative hidden overflow-hidden bg-clinical-teal p-12 text-white lg:flex lg:flex-col lg:justify-between">
