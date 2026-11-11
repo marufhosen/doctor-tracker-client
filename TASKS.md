@@ -88,7 +88,7 @@ and stop. “Accept” is the task's acceptance criteria.
 
 - [x] **61 Add shared skeletons.** Match route shapes with reduced motion. **Accept:** loading avoids major shift. **Commit:** `feat: add shared loading skeletons`.
 - [x] **62 Add error/empty states.** Root and shared safe retry/navigation. **Accept:** no internals and actions work. **Commit:** `feat: add application feedback states`.
-- [ ] **63 Review accessibility.** Audit/fix semantics, keyboard, focus, announcements, contrast, charts, motion. **Accept:** automated/manual findings pass. **Commit:** `fix: improve application accessibility`.
+- [x] **63 Review accessibility.** Audit/fix semantics, keyboard, focus, announcements, contrast, charts, motion. **Accept:** automated/manual findings pass. **Commit:** `fix: improve application accessibility`.
 - [ ] **64 Review mobile.** Audit nav, tables, forms, dialogs, filters. **Accept:** no overflow/unreachable action. **Commit:** `fix: refine responsive layouts`.
 - [ ] **65 Review caching.** Audit isolation, no-store, dedupe, revalidation. **Accept:** no cross-user data and fresh mutations. **Commit:** `fix: harden data caching strategy`.
 - [ ] **66 Optimize boundaries.** Reduce client JS, waterfalls, rerenders, chart cost. **Accept:** main pages remain server-rendered; build evidence recorded. **Commit:** `perf: optimize server component boundaries`.

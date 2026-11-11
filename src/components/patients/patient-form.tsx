@@ -41,7 +41,11 @@ export function PatientForm({ doctorId }: { doctorId: string }) {
   return (
     <form onSubmit={formik.handleSubmit} noValidate className="max-w-2xl space-y-5">
       {formik.status && (
-        <p role="alert" className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive"
+        >
           {formik.status}
         </p>
       )}

@@ -147,6 +147,19 @@
   ::selection {
     background: color-mix(in srgb, var(--soft-jade) 28%, transparent);
   }
+  :target {
+    scroll-margin-block: 5rem;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@media (forced-colors: active) {
+  * {
+    forced-color-adjust: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

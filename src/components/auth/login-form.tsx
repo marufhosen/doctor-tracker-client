@@ -48,6 +48,7 @@ export function LoginForm({ returnTo }: { returnTo: string }) {
       {formError ? (
         <div
           role="alert"
+          aria-live="assertive"
           className="rounded-lg border border-destructive/25 bg-destructive/10 px-4 py-3 text-sm text-destructive"
         >
           {formError}

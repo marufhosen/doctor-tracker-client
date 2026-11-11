@@ -51,6 +51,7 @@ export function RemovePatientButton({
           {error && (
             <p
               role="alert"
+              aria-live="assertive"
               className="mt-4 rounded-lg bg-destructive/10 p-3 text-sm text-destructive"
             >
               {error}
