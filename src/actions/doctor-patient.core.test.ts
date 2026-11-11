@@ -3,6 +3,7 @@ import {
   performCreateDoctorPatient,
   performRemoveDoctorPatient,
 } from "@/actions/doctor-patient.core";
+import { ApiClientError } from "@/lib/api/errors";
 import type { Patient } from "@/lib/api/schemas/patient";
 
 const id = "507f1f77bcf86cd799439011";
@@ -75,4 +76,13 @@ test("returns typed field errors for invalid patient input", async () => {
     expect(result.fieldErrors?.name).toBeDefined();
     expect(result.fieldErrors?.condition).toBeDefined();
   }
+});
+test("reports a missing doctor-patient association clearly", async () => {
+  const result = await performRemoveDoctorPatient(id, id, admin, async () => {
+    throw new ApiClientError("not_found", "missing");
+  });
+  expect(result).toEqual({
+    success: false,
+    message: "This patient is no longer assigned to this doctor.",
+  });
 });

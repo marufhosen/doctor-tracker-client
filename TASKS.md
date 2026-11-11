@@ -82,7 +82,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **57 Implement update action.** Validate changes/ADMIN/CSRF and revalidate. **Accept:** doctor ID cannot be submitted. **Commit:** `feat: update patients through server action`.
 - [x] **58 Add delete confirmation.** Accessible named destructive dialog. **Accept:** cancel/focus/keyboard/duplicate prevention pass. **Commit:** `feat: add patient delete confirmation`.
 - [x] **59 Implement delete action.** Validate/admin/CSRF, revalidate, safe redirect. **Accept:** missing/repeat/error clear. **Commit:** `feat: delete patients through server action`.
-- [ ] **60 Implement nested removal.** Use doctor-scoped delete and association error. **Accept:** all affected views revalidate. **Commit:** `feat: remove patients from doctor context`.
+- [x] **60 Implement nested removal.** Use doctor-scoped delete and association error. **Accept:** all affected views revalidate. **Commit:** `feat: remove patients from doctor context`.
 
 ## Phase 8 — Quality
 

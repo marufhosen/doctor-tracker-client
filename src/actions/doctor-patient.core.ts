@@ -51,6 +51,13 @@ export async function performRemoveDoctorPatient(
     await remove(doctor.data, patient.data);
     return { success: true };
   } catch (error) {
-    return { success: false, message: toSafeApiError(error).message };
+    const safe = toSafeApiError(error);
+    return {
+      success: false,
+      message:
+        safe.kind === "not_found"
+          ? "This patient is no longer assigned to this doctor."
+          : safe.message,
+    };
   }
 }
