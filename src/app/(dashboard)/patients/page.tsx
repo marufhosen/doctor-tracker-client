@@ -1,9 +1,10 @@
+import { PatientsList } from "@/components/patients/patients-list";
 import { getPatientList } from "@/lib/patients/patient.service.server";
 import { parsePatientListQuery } from "@/lib/patients/patient-query";
 
 export default async function PatientsPage({ searchParams }: PageProps<"/patients">) {
   const query = parsePatientListQuery(await searchParams);
-  const { meta } = await getPatientList(query);
+  const { patients, meta } = await getPatientList(query);
 
   return (
     <section aria-labelledby="patients-heading">
@@ -13,6 +14,9 @@ export default async function PatientsPage({ searchParams }: PageProps<"/patient
       <p className="mt-2 text-muted-foreground">
         {meta.total.toLocaleString()} {meta.total === 1 ? "patient" : "patients"}
       </p>
+      <div className="mt-6">
+        <PatientsList patients={patients} />
+      </div>
     </section>
   );
 }
