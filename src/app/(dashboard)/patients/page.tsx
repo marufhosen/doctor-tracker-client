@@ -33,7 +33,7 @@ export default async function PatientsPage({ searchParams }: PageProps<"/patient
       <h2 id="patients-heading" className="sr-only">
         Patients
       </h2>
-      <div className="mt-6">
+      <div className="mt-6 rounded-[10px] border bg-card p-5">
         <PatientSearch
           value={query.search}
           preservedQuery={{

@@ -58,14 +58,12 @@ export function PageHeader({
   kind = "list",
 }: PageHeaderProps) {
   return (
-    <header data-page-kind={kind} className="mb-6 space-y-3 lg:mb-8">
+    <header data-page-kind={kind} className="mb-7 space-y-3">
       {breadcrumbs && breadcrumbs.length > 0 && <PageBreadcrumbs items={breadcrumbs} />}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 space-y-1">
-          <h1 className="text-2xl sm:text-3xl">{title}</h1>
-          {description && (
-            <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">{description}</p>
-          )}
+          <h1 className="text-3xl sm:text-[2rem]">{title}</h1>
+          {description && <p className="max-w-2xl text-sm text-muted-foreground">{description}</p>}
         </div>
         {actions && <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}
       </div>

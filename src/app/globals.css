@@ -39,9 +39,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-clinical-teal: var(--clinical-teal);
-  --color-soft-jade: var(--soft-jade);
-  --color-muted-iris: var(--muted-iris);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
   --spacing-control: var(--control-height);
   --shadow-card: var(--card-shadow);
   --radius-sm: calc(var(--radius) * 0.6);
@@ -54,77 +53,71 @@
 }
 
 :root {
-  --clinical-teal: #145c63;
-  --soft-jade: #2e9387;
-  --muted-iris: #7565a4;
-  --background: #f7f9f8;
-  --foreground: #24343b;
+  --brand-deep: #28233f;
+  --brand-soft: #ece8f8;
+  --background: #f7f7fb;
+  --foreground: #2b3043;
   --card: #ffffff;
-  --card-foreground: #24343b;
+  --card-foreground: #2b3043;
   --popover: #ffffff;
-  --popover-foreground: #24343b;
-  --primary: #145c63;
+  --popover-foreground: #2b3043;
+  --primary: #624caf;
   --primary-foreground: #ffffff;
-  --secondary: #edf3f2;
-  --secondary-foreground: #24343b;
-  --muted: #edf3f2;
-  --muted-foreground: #607278;
-  --accent: #ece9f5;
-  --accent-foreground: #4f4377;
-  --destructive: #b42318;
-  --border: #dce7e5;
-  --input: #cbdad7;
-  --ring: #7565a4;
-  --chart-1: #145c63;
-  --chart-2: #2e9387;
-  --chart-3: #7565a4;
-  --chart-4: #d3895d;
-  --chart-5: #5e7f91;
-  --radius: 0.75rem;
-  --control-height: 2.75rem;
-  --card-shadow: 0 1px 2px rgb(20 92 99 / 6%), 0 12px 32px rgb(36 52 59 / 7%);
-  --sidebar: #145c63;
-  --sidebar-foreground: #f7f9f8;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #145c63;
-  --sidebar-accent: #1f6e74;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #3d7d82;
-  --sidebar-ring: #b9ded8;
+  --secondary: #f1eef9;
+  --secondary-foreground: #59449e;
+  --muted: #f7f6fa;
+  --muted-foreground: #768097;
+  --accent: #ece8f8;
+  --accent-foreground: #59449e;
+  --destructive: #d24848;
+  --border: #dedfea;
+  --input: #d9dbe7;
+  --ring: #624caf;
+  --chart-1: #624caf;
+  --chart-2: #b9ace0;
+  --chart-3: #8a75c7;
+  --chart-4: #ddd6ef;
+  --chart-5: #4d3b87;
+  --radius: 0.5rem;
+  --control-height: 2.5rem;
+  --card-shadow: 0 1px 2px rgb(43 48 67 / 3%);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #657087;
+  --sidebar-primary: #624caf;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ece8f8;
+  --sidebar-accent-foreground: #59449e;
+  --sidebar-border: #e1e2eb;
+  --sidebar-ring: #624caf;
 }
 
 .dark {
-  --background: #16262c;
-  --foreground: #edf3f2;
-  --card: #1d3036;
-  --card-foreground: #f7f9f8;
-  --popover: #1d3036;
-  --popover-foreground: #f7f9f8;
-  --primary: #70c9bd;
-  --primary-foreground: #102a2e;
-  --secondary: #294047;
-  --secondary-foreground: #f7f9f8;
-  --muted: #294047;
-  --muted-foreground: #b6c7c9;
-  --accent: #3a3452;
-  --accent-foreground: #f0edf8;
-  --destructive: #ff8a80;
-  --border: #385057;
-  --input: #4a6268;
-  --ring: #b5a8df;
-  --chart-1: #70c9bd;
-  --chart-2: #9d8dca;
-  --chart-3: #e1a47e;
-  --chart-4: #8eb3c5;
-  --chart-5: #d6cf8a;
-  --sidebar: #102f34;
-  --sidebar-foreground: #f7f9f8;
-  --sidebar-primary: #70c9bd;
-  --sidebar-primary-foreground: #102a2e;
-  --sidebar-accent: #24464b;
+  --background: #201d31;
+  --foreground: #f4f2fa;
+  --card: #2a263d;
+  --card-foreground: #f8f7fb;
+  --popover: #2a263d;
+  --popover-foreground: #f8f7fb;
+  --primary: #a997e1;
+  --primary-foreground: #201d31;
+  --secondary: #39334f;
+  --secondary-foreground: #f8f7fb;
+  --muted: #39334f;
+  --muted-foreground: #c5bed7;
+  --accent: #463d65;
+  --accent-foreground: #ffffff;
+  --destructive: #ff8c8c;
+  --border: #4a445d;
+  --input: #5a536e;
+  --ring: #a997e1;
+  --sidebar: #262238;
+  --sidebar-foreground: #d9d3e7;
+  --sidebar-primary: #a997e1;
+  --sidebar-primary-foreground: #201d31;
+  --sidebar-accent: #40385b;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #385d62;
-  --sidebar-ring: #b5a8df;
+  --sidebar-border: #4a445d;
+  --sidebar-ring: #a997e1;
 }
 
 @layer base {
@@ -145,7 +138,7 @@
     @apply font-heading font-semibold tracking-tight text-balance;
   }
   ::selection {
-    background: color-mix(in srgb, var(--soft-jade) 28%, transparent);
+    background: color-mix(in srgb, var(--primary) 24%, transparent);
   }
   :target {
     scroll-margin-block: 5rem;

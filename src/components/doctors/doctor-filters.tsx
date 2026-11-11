@@ -11,11 +11,8 @@ export function DoctorFilters({ query }: { query: ParsedDoctorListQuery }) {
   const clearHref = clearParams.size ? `/doctors?${clearParams}` : "/doctors";
 
   return (
-    <details className="rounded-xl border bg-card">
-      <summary className="min-h-11 cursor-pointer px-4 py-3 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-        Filters and sorting
-      </summary>
-      <form method="get" className="grid gap-4 border-t p-4 sm:grid-cols-2 xl:grid-cols-4">
+    <section aria-label="Doctor filters" className="rounded-[10px] border bg-card p-5">
+      <form method="get" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {query.search && <input type="hidden" name="search" value={query.search} />}
         <label htmlFor="doctor-specialization" className="grid gap-1 text-sm font-medium">
           Specialization
@@ -91,6 +88,6 @@ export function DoctorFilters({ query }: { query: ParsedDoctorListQuery }) {
           </Button>
         </div>
       </form>
-    </details>
+    </section>
   );
 }

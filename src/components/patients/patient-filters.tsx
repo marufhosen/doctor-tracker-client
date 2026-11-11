@@ -14,11 +14,8 @@ export function PatientFilters({
 }) {
   const clear = query.search ? `/patients?search=${encodeURIComponent(query.search)}` : "/patients";
   return (
-    <details className="rounded-xl border bg-card">
-      <summary className="min-h-11 cursor-pointer px-4 py-3 text-sm font-semibold">
-        Filters and sorting
-      </summary>
-      <form method="get" className="grid gap-4 border-t p-4 sm:grid-cols-2 xl:grid-cols-4">
+    <section aria-label="Patient filters" className="rounded-[10px] border bg-card p-5">
+      <form method="get" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {query.search && <input type="hidden" name="search" value={query.search} />}
         <label htmlFor="patient-condition" className="grid gap-1 text-sm font-medium">
           Condition
@@ -103,6 +100,6 @@ export function PatientFilters({
           </Button>
         </div>
       </form>
-    </details>
+    </section>
   );
 }

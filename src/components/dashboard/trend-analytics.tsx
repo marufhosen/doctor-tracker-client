@@ -19,13 +19,13 @@ export function TrendAnalytics({ trends, range, validationMessage }: TrendAnalyt
   const data = trends ? combineTrendSeries(trends) : [];
 
   return (
-    <section aria-labelledby="trends-heading" className="rounded-2xl border bg-card shadow-card">
-      <div className="border-b px-5 py-4 sm:px-6">
+    <section aria-labelledby="trends-heading" className="rounded-[10px] border bg-card shadow-card">
+      <div className="px-5 pt-6 sm:px-6">
         <h2 id="trends-heading" className="text-lg">
-          Creation trends
+          Patient registrations
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          New doctors and patients grouped by UTC day.
+          New doctors and patients in the selected period.
         </p>
         <form method="get" className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end">
           <label className="grid gap-1 text-sm font-medium">

@@ -1,4 +1,4 @@
-import { Building2, CalendarDays, Mail, Phone, Stethoscope, UserPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -31,66 +31,56 @@ export default async function DoctorDetailPage({
     notFound();
   }
 
-  const details = [
-    { label: "Specialization", value: doctor.specialization, icon: Stethoscope },
-    { label: "Hospital", value: doctor.hospital, icon: Building2 },
-    { label: "Email", value: doctor.email, icon: Mail, href: `mailto:${doctor.email}` },
-    { label: "Phone", value: doctor.phone, icon: Phone, href: `tel:${doctor.phone}` },
-    {
-      label: "Created",
-      value: new Intl.DateTimeFormat("en", { dateStyle: "long", timeZone: "UTC" }).format(
-        new Date(doctor.createdAt),
-      ),
-      icon: CalendarDays,
-    },
-  ];
+  const initials = doctor.name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <>
       <PageHeader
         kind="detail"
         title={doctor.name}
-        description="Doctor profile and patient assignments."
+        description="Doctors / Patient list"
         breadcrumbs={[{ label: "Doctors", href: "/doctors" }, { label: doctor.name }]}
         actions={
           <Button asChild>
             <Link href={`/doctors/${doctor.id}/patients/new` as Route}>
               <UserPlus aria-hidden="true" />
-              Create and assign patient
+              Add patient
             </Link>
           </Button>
         }
       />
       <section
         aria-labelledby="profile-heading"
-        className="rounded-2xl border bg-card p-5 shadow-card sm:p-6"
+        className="rounded-[10px] border bg-card p-5 shadow-card sm:p-6"
       >
-        <h2 id="profile-heading" className="text-lg">
-          Profile
+        <h2 id="profile-heading" className="sr-only">
+          Doctor profile
         </h2>
-        <dl className="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {details.map(({ label, value, icon: Icon, href }) => (
-            <div key={label} className="flex gap-3">
-              <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-secondary text-primary">
-                <Icon aria-hidden="true" className="size-4" />
-              </span>
-              <div className="min-w-0">
-                <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  {label}
-                </dt>
-                <dd className="mt-1 break-words font-medium">
-                  {href ? (
-                    <a href={href} className="hover:text-primary hover:underline">
-                      {value}
-                    </a>
-                  ) : (
-                    value
-                  )}
-                </dd>
-              </div>
-            </div>
-          ))}
-        </dl>
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+          <span className="grid size-14 shrink-0 place-items-center rounded-full bg-secondary text-lg font-semibold text-primary">
+            {initials}
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-lg font-semibold">
+              {doctor.specialization} · {doctor.hospital}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              <a href={`mailto:${doctor.email}`} className="hover:text-primary">
+                {doctor.email}
+              </a>
+              <span aria-hidden="true"> · </span>
+              <a href={`tel:${doctor.phone}`} className="hover:text-primary">
+                {doctor.phone}
+              </a>
+            </p>
+          </div>
+          <p className="text-lg font-semibold text-primary">{patientResult.meta.total} patients</p>
+        </div>
       </section>
       <DoctorPatients
         doctorId={doctor.id}

@@ -36,7 +36,12 @@ export function RemovePatientButton({
       }}
     >
       <Dialog.Trigger asChild>
-        <Button type="button" variant="destructive" size="sm">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+        >
           Remove
         </Button>
       </Dialog.Trigger>

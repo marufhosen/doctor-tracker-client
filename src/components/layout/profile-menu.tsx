@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, UserRound } from "lucide-react";
+import { ChevronDown, LogOut, UserRound } from "lucide-react";
 import { DropdownMenu } from "radix-ui";
 import { useFormStatus } from "react-dom";
 
@@ -22,9 +22,19 @@ export function ProfileMenu({ user }: ProfileMenuProps) {
         <button
           type="button"
           aria-label={`Open profile menu for ${user.name}`}
-          className="grid size-10 shrink-0 place-items-center rounded-full bg-secondary text-sm font-semibold text-secondary-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex shrink-0 items-center gap-3 rounded-lg px-1 py-1 text-left outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
         >
-          {getInitials(user.name)}
+          <span className="grid size-10 place-items-center rounded-full bg-secondary text-sm font-semibold text-primary">
+            {getInitials(user.name)}
+          </span>
+          <span className="hidden min-w-24 sm:block">
+            <span className="block truncate text-xs font-semibold">{user.name}</span>
+            <span className="mt-0.5 block text-[11px] text-muted-foreground">Administrator</span>
+          </span>
+          <ChevronDown
+            aria-hidden="true"
+            className="hidden size-4 text-muted-foreground sm:block"
+          />
         </button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>

@@ -11,15 +11,13 @@ export function DoctorPatientAnalytics({ doctors }: { doctors: DoctorPatientCoun
   return (
     <section
       aria-labelledby="doctor-patients-heading"
-      className="rounded-2xl border bg-card shadow-card"
+      className="h-full rounded-[10px] border bg-card shadow-card"
     >
-      <div className="border-b px-5 py-4 sm:px-6">
+      <div className="px-5 pt-6 sm:px-6">
         <h2 id="doctor-patients-heading" className="text-lg">
           Patients by doctor
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Current patient assignments across the clinical team.
-        </p>
+        <p className="mt-1 text-sm text-muted-foreground">Doctors by assigned patient count.</p>
       </div>
       <div className="p-4 sm:p-6">
         {doctors.length === 0 ? (

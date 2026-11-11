@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, Phone, UserRound } from "lucide-react";
+import { Mail, Phone, UserRound } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 
@@ -19,10 +19,13 @@ export function PatientsList({ patients }: { patients: Patient[] }) {
   }
   return (
     <>
-      <div className="hidden overflow-hidden rounded-2xl border bg-card shadow-card md:block">
+      <div className="hidden overflow-hidden rounded-[10px] border bg-card shadow-card md:block">
+        <div className="px-5 py-5">
+          <h3 className="text-base">All patients</h3>
+        </div>
         <table className="w-full text-left text-sm">
           <caption className="sr-only">Patient directory</caption>
-          <thead className="border-b bg-muted/45 text-muted-foreground">
+          <thead className="border-b bg-muted/70 text-xs text-muted-foreground">
             <tr>
               <th scope="col" className="px-5 py-3 font-medium">
                 Patient
@@ -59,9 +62,9 @@ export function PatientsList({ patients }: { patients: Patient[] }) {
                   <Link
                     href={href(patient.id)}
                     aria-label={`View ${patient.name}`}
-                    className="inline-grid size-10 place-items-center rounded-lg text-primary hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex min-h-10 items-center rounded-lg px-2 text-xs font-medium text-primary hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <ArrowRight aria-hidden="true" className="size-4" />
+                    View record&nbsp;→
                   </Link>
                 </td>
               </tr>
@@ -71,7 +74,7 @@ export function PatientsList({ patients }: { patients: Patient[] }) {
       </div>
       <ul className="grid gap-4 md:hidden">
         {patients.map((patient) => (
-          <li key={patient.id} className="rounded-2xl border bg-card p-5 shadow-card">
+          <li key={patient.id} className="rounded-[10px] border bg-card p-5 shadow-card">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-semibold">{patient.name}</h3>
@@ -80,9 +83,9 @@ export function PatientsList({ patients }: { patients: Patient[] }) {
               <Link
                 href={href(patient.id)}
                 aria-label={`View ${patient.name}`}
-                className="grid size-11 place-items-center rounded-lg bg-secondary text-primary"
+                className="inline-flex min-h-10 items-center rounded-lg bg-secondary px-3 text-xs font-medium text-primary"
               >
-                <ArrowRight aria-hidden="true" className="size-4" />
+                View&nbsp;→
               </Link>
             </div>
             <dl className="mt-4 space-y-2 text-sm">

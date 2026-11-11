@@ -8,5 +8,10 @@ test("renders real zero totals as data", () => {
 
   expect(screen.getByText("Total doctors").isConnected).toBe(true);
   expect(screen.getByText("Total patients").isConnected).toBe(true);
-  expect(screen.getAllByRole("definition").map((node) => node.textContent)).toEqual(["0", "0"]);
+  expect(screen.getByText("Patients per doctor").isConnected).toBe(true);
+  expect(screen.getAllByRole("definition").map((node) => node.textContent)).toEqual([
+    "0",
+    "0",
+    "0.00",
+  ]);
 });

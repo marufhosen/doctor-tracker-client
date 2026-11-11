@@ -1,4 +1,4 @@
-import { ArrowRight, Building2, Mail, Phone, Stethoscope } from "lucide-react";
+import { Building2, Mail, Phone, Stethoscope } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 
@@ -19,10 +19,13 @@ export function DoctorsList({ doctors }: { doctors: Doctor[] }) {
 
   return (
     <>
-      <div className="hidden overflow-hidden rounded-2xl border bg-card shadow-card md:block">
+      <div className="hidden overflow-hidden rounded-[10px] border bg-card shadow-card md:block">
+        <div className="px-5 py-5">
+          <h3 className="text-base">All doctors</h3>
+        </div>
         <table className="w-full text-left text-sm">
           <caption className="sr-only">Doctor directory</caption>
-          <thead className="border-b bg-muted/45 text-muted-foreground">
+          <thead className="border-b bg-muted/70 text-xs text-muted-foreground">
             <tr>
               <th scope="col" className="px-5 py-3 font-medium">
                 Doctor
@@ -34,7 +37,10 @@ export function DoctorsList({ doctors }: { doctors: Doctor[] }) {
                 Hospital
               </th>
               <th scope="col" className="px-5 py-3 font-medium">
-                Contact
+                Phone
+              </th>
+              <th scope="col" className="px-5 py-3 font-medium">
+                Email
               </th>
               <th scope="col" className="px-5 py-3">
                 <span className="sr-only">Details</span>
@@ -49,24 +55,23 @@ export function DoctorsList({ doctors }: { doctors: Doctor[] }) {
                 </th>
                 <td className="px-5 py-4">{doctor.specialization}</td>
                 <td className="px-5 py-4">{doctor.hospital}</td>
-                <td className="px-5 py-4">
-                  <a className="block hover:text-primary" href={`mailto:${doctor.email}`}>
-                    {doctor.email}
-                  </a>
-                  <a
-                    className="mt-1 block text-muted-foreground hover:text-primary"
-                    href={`tel:${doctor.phone}`}
-                  >
+                <td className="px-5 py-4 text-muted-foreground">
+                  <a className="hover:text-primary" href={`tel:${doctor.phone}`}>
                     {doctor.phone}
+                  </a>
+                </td>
+                <td className="px-5 py-4 text-muted-foreground">
+                  <a className="hover:text-primary" href={`mailto:${doctor.email}`}>
+                    {doctor.email}
                   </a>
                 </td>
                 <td className="px-5 py-4 text-right">
                   <Link
                     href={detailHref(doctor.id)}
                     aria-label={`View ${doctor.name}`}
-                    className="inline-grid size-10 place-items-center rounded-lg text-primary hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex min-h-10 items-center rounded-lg px-2 text-xs font-medium text-primary hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <ArrowRight aria-hidden="true" className="size-4" />
+                    View patients&nbsp;→
                   </Link>
                 </td>
               </tr>
@@ -77,7 +82,7 @@ export function DoctorsList({ doctors }: { doctors: Doctor[] }) {
 
       <ul className="grid gap-4 md:hidden">
         {doctors.map((doctor) => (
-          <li key={doctor.id} className="rounded-2xl border bg-card p-5 shadow-card">
+          <li key={doctor.id} className="rounded-[10px] border bg-card p-5 shadow-card">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-semibold">{doctor.name}</h3>
@@ -86,9 +91,9 @@ export function DoctorsList({ doctors }: { doctors: Doctor[] }) {
               <Link
                 href={detailHref(doctor.id)}
                 aria-label={`View ${doctor.name}`}
-                className="grid size-11 place-items-center rounded-lg bg-secondary text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex min-h-10 items-center rounded-lg bg-secondary px-3 text-xs font-medium text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <ArrowRight aria-hidden="true" className="size-4" />
+                View&nbsp;→
               </Link>
             </div>
             <dl className="mt-4 space-y-2 text-sm">
