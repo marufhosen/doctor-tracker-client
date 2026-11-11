@@ -58,7 +58,7 @@ and stop. “Accept” is the task's acceptance criteria.
 ## Phase 6 — Doctors
 
 - [x] **38 Integrate doctor listing.** Parse URL and fetch validated pagination. **Accept:** invalid values fall back safely. **Commit:** `feat: integrate doctor listing`.
-- [ ] **39 Create doctors table.** Responsive accessible table/cards with detail links. **Accept:** mobile usable. **Commit:** `feat: add doctors table`.
+- [x] **39 Create doctors table.** Responsive accessible table/cards with detail links. **Accept:** mobile usable. **Commit:** `feat: add doctors table`.
 - [ ] **40 Add doctor search.** URL search without client fetching. **Accept:** reset page, clear, history work. **Commit:** `feat: add doctor search`.
 - [ ] **41 Add doctor filters.** Specialization/hospital/dates/sort URL controls. **Accept:** combinations match API. **Commit:** `feat: add doctor filters`.
 - [ ] **42 Add doctor pagination.** Accessible metadata-driven links. **Accept:** boundaries/zero safe. **Commit:** `feat: add doctor pagination`.
