@@ -28,7 +28,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **15 Implement login action.** Validate, send Origin, require ADMIN, sync cookies, return safe result. **Accept:** invalid role/credentials/backend cases tested. **Commit:** `feat: add login server action`.
 - [x] **16 Build login form.** Responsive split UI using `useFormik`, validation, visibility, pending/errors. **Accept:** labelled and keyboard/mobile accessible. **Commit:** `feat: build login experience`.
 - [x] **17 Support Remember Me.** Wire boolean without changing backend lifetime. **Accept:** persistent/session cookie cases tested. **Commit:** `feat: support remembered sessions`.
-- [ ] **18 Implement session retrieval.** Validated no-store `/auth/me` with request dedupe. **Accept:** valid/missing/expired cases safe. **Commit:** `feat: add server session retrieval`.
+- [x] **18 Implement session retrieval.** Validated no-store `/auth/me` with request dedupe. **Accept:** valid/missing/expired cases safe. **Commit:** `feat: add server session retrieval`.
 - [ ] **19 Protect layout.** Authoritatively require ADMIN and safe return paths. **Accept:** unauthenticated/non-admin content blocked. **Commit:** `feat: protect authenticated routes`.
 - [ ] **20 Add Proxy redirects.** Next.js 16 optimistic cookie redirects only. **Accept:** assets excluded; layout stays authoritative. **Commit:** `feat: add authentication proxy redirects`.
 - [ ] **21 Implement refresh.** Cookie-mutating action, exact rotation, one retry, revoked handling, render coordinator. **Accept:** recovery has no loops. **Commit:** `feat: implement session refresh`.
