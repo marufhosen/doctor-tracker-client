@@ -60,7 +60,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **38 Integrate doctor listing.** Parse URL and fetch validated pagination. **Accept:** invalid values fall back safely. **Commit:** `feat: integrate doctor listing`.
 - [x] **39 Create doctors table.** Responsive accessible table/cards with detail links. **Accept:** mobile usable. **Commit:** `feat: add doctors table`.
 - [x] **40 Add doctor search.** URL search without client fetching. **Accept:** reset page, clear, history work. **Commit:** `feat: add doctor search`.
-- [ ] **41 Add doctor filters.** Specialization/hospital/dates/sort URL controls. **Accept:** combinations match API. **Commit:** `feat: add doctor filters`.
+- [x] **41 Add doctor filters.** Specialization/hospital/dates/sort URL controls. **Accept:** combinations match API. **Commit:** `feat: add doctor filters`.
 - [ ] **42 Add doctor pagination.** Accessible metadata-driven links. **Accept:** boundaries/zero safe. **Commit:** `feat: add doctor pagination`.
 - [ ] **43 Build doctor form.** Formik/shared Zod for supported fields. **Accept:** mobile, focus, errors, pending pass. **Commit:** `feat: build doctor form`.
 - [ ] **44 Implement create doctor action.** Revalidate input/auth/ADMIN, CSRF, errors, paths. **Accept:** success/field failures tested. **Commit:** `feat: create doctors through server action`.
