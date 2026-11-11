@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/layout/page-navigation";
 import { PatientForm } from "@/components/patients/patient-form";
 import { getDoctorDetail } from "@/lib/doctors/doctor.service.server";
 
+export const instant = false;
+
 export default async function NewPatientPage({
   params,
 }: PageProps<"/doctors/[doctorId]/patients/new">) {

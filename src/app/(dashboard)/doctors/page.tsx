@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
 import { parseDoctorListQuery } from "@/lib/doctors/doctor-query";
 
+export const instant = false;
+
 export default async function DoctorsPage({ searchParams }: PageProps<"/doctors">) {
   const query = parseDoctorListQuery(await searchParams);
   const { doctors, meta } = await getDoctorList(query);

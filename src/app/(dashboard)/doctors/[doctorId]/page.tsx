@@ -11,6 +11,8 @@ import type { Doctor } from "@/lib/api/schemas/doctor";
 import { getDoctorDetail, getDoctorPatients } from "@/lib/doctors/doctor.service.server";
 import { parseDoctorPatientQuery } from "@/lib/doctors/doctor-patient-query";
 
+export const instant = false;
+
 export default async function DoctorDetailPage({
   params,
   searchParams,

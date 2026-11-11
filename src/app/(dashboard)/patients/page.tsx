@@ -7,6 +7,8 @@ import { getDoctorList } from "@/lib/doctors/doctor.service.server";
 import { getPatientList } from "@/lib/patients/patient.service.server";
 import { parsePatientListQuery } from "@/lib/patients/patient-query";
 
+export const instant = false;
+
 export default async function PatientsPage({ searchParams }: PageProps<"/patients">) {
   const query = parsePatientListQuery(await searchParams);
   const [{ patients, meta }, { doctors }] = await Promise.all([

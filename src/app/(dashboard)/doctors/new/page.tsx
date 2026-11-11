@@ -2,6 +2,8 @@ import { createDoctorAction } from "@/actions/doctor.actions";
 import { DoctorForm } from "@/components/doctors/doctor-form";
 import { PageHeader } from "@/components/layout/page-navigation";
 
+export const instant = false;
+
 export default function NewDoctorPage() {
   return (
     <>

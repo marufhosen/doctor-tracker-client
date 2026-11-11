@@ -5,6 +5,8 @@ import { PageHeader } from "@/components/layout/page-navigation";
 import { Button } from "@/components/ui/button";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
 
+export const instant = false;
+
 export default async function NewPatientDoctorPage() {
   const { doctors } = await getDoctorList({
     page: 1,

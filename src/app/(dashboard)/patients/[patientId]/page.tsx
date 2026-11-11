@@ -11,6 +11,8 @@ import type { Patient } from "@/lib/api/schemas/patient";
 import { getDoctorDetail } from "@/lib/doctors/doctor.service.server";
 import { getPatientDetail } from "@/lib/patients/patient.service.server";
 
+export const instant = false;
+
 const optional = (value: string | number | undefined) => value ?? "Not provided";
 
 export default async function PatientDetailPage({ params }: PageProps<"/patients/[patientId]">) {

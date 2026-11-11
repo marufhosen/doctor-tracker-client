@@ -7,6 +7,8 @@ import { ApiClientError } from "@/lib/api/errors";
 import type { Patient } from "@/lib/api/schemas/patient";
 import { getPatientDetail } from "@/lib/patients/patient.service.server";
 
+export const instant = false;
+
 export default async function EditPatientPage({ params }: PageProps<"/patients/[patientId]/edit">) {
   const { patientId } = await params;
   let patient: Patient;

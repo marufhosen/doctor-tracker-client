@@ -14,6 +14,8 @@ import {
 } from "@/lib/dashboard/dashboard.service.server";
 import { parseDashboardDateRange } from "@/lib/dashboard/dashboard-range";
 
+export const instant = false;
+
 export default async function DashboardPage({ searchParams }: PageProps<"/dashboard">) {
   const rawSearchParams = await searchParams;
   const range = parseDashboardDateRange(rawSearchParams);
