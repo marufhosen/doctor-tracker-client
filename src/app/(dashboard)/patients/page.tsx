@@ -21,7 +21,6 @@ export default async function PatientsPage({ searchParams }: PageProps<"/patient
   return (
     <section aria-labelledby="patients-heading">
       <PageHeader
-        eyebrow="Directory"
         title="Patients"
         description={`${meta.total.toLocaleString()} ${meta.total === 1 ? "patient" : "patients"} total`}
         actions={<CreatePatientDialog doctors={doctors.map(({ id, name }) => ({ id, name }))} />}

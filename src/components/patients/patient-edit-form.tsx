@@ -11,6 +11,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import type { Patient, PatientUpdate } from "@/lib/api/schemas/patient";
 
 type Result =
@@ -106,20 +113,27 @@ export function PatientEditForm({
             </div>
           );
         })}
-        <div>
+        <div className="sm:col-span-2">
           <Label htmlFor="patient-gender">Gender</Label>
-          <select
-            id="patient-gender"
-            name="gender"
-            value={formik.values.gender}
-            onChange={formik.handleChange}
-            className="mt-2 h-control w-full rounded-lg border bg-background px-3 text-sm"
+          <Select
+            value={formik.values.gender || "__empty__"}
+            onValueChange={(value) =>
+              formik.setFieldValue("gender", value === "__empty__" ? "" : value)
+            }
           >
-            <option value="">Not provided</option>
-            <option value="MALE">Male</option>
-            <option value="FEMALE">Female</option>
-            <option value="OTHER">Other</option>
-          </select>
+            <SelectTrigger
+              id="patient-gender"
+              className="mt-2 h-control rounded-lg bg-background px-3"
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="__empty__">Not provided</SelectItem>
+              <SelectItem value="MALE">Male</SelectItem>
+              <SelectItem value="FEMALE">Female</SelectItem>
+              <SelectItem value="OTHER">Other</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
       <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row sm:justify-end">
