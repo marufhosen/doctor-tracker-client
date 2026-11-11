@@ -29,6 +29,24 @@ test("builds a safe URL, forwards only known cookies, and validates JSON", async
   expect(fetchImpl).toHaveBeenCalledTimes(1);
 });
 
+test("never permits shared caching for authenticated requests", async () => {
+  let request: RequestInit | undefined;
+  const client = createApiClient({
+    baseUrl: "https://api.example.com/api/v1",
+    fetchImpl: async (_input, init) => {
+      request = init;
+      return Response.json({ ok: true });
+    },
+  });
+  await client.request({
+    path: "auth/me",
+    cookies: { doctor_tracker_access: "private" },
+    cache: "force-cache",
+    responseSchema,
+  });
+  expect(request?.cache).toBe("no-store");
+});
+
 test("allows one explicit network retry for an idempotent request", async () => {
   const fetchImpl = mock(async () => {
     if (fetchImpl.mock.calls.length === 1) {

@@ -120,7 +120,7 @@ export function createApiClient({
           const response = await fetchImpl(url, {
             method,
             headers,
-            cache,
+            cache: cookieHeader ? "no-store" : cache,
             redirect: "error",
             signal: createRequestSignal(signal, timeoutMs, createTimeoutSignal),
             ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
