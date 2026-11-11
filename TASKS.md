@@ -31,7 +31,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **18 Implement session retrieval.** Validated no-store `/auth/me` with request dedupe. **Accept:** valid/missing/expired cases safe. **Commit:** `feat: add server session retrieval`.
 - [x] **19 Protect layout.** Authoritatively require ADMIN and safe return paths. **Accept:** unauthenticated/non-admin content blocked. **Commit:** `feat: protect authenticated routes`.
 - [x] **20 Add Proxy redirects.** Next.js 16 optimistic cookie redirects only. **Accept:** assets excluded; layout stays authoritative. **Commit:** `feat: add authentication proxy redirects`.
-- [ ] **21 Implement refresh.** Cookie-mutating action, exact rotation, one retry, revoked handling, render coordinator. **Accept:** recovery has no loops. **Commit:** `feat: implement session refresh`.
+- [x] **21 Implement refresh.** Cookie-mutating action, exact rotation, one retry, revoked handling, render coordinator. **Accept:** recovery has no loops. **Commit:** `feat: implement session refresh`.
 - [ ] **22 Coordinate concurrent refresh.** Prevent duplicate rotation without cross-user globals. **Accept:** concurrent simulation yields one rotation. **Commit:** `feat: coordinate concurrent token refresh`.
 - [ ] **23 Implement logout.** Revoke with CSRF, clear mirrors, invalidate, redirect. **Accept:** idempotent and tested. **Commit:** `feat: add secure logout`.
 - [ ] **24 Add auth integration tests.** Cover login, remember, guards, CSRF, rotation, concurrency, logout. **Accept:** flows pass without token exposure. **Commit:** `test: cover authentication flows`.
