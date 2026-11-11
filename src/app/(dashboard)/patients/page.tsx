@@ -2,6 +2,7 @@ import { PatientFilters } from "@/components/patients/patient-filters";
 import { PatientPagination } from "@/components/patients/patient-pagination";
 import { PatientSearch } from "@/components/patients/patient-search";
 import { PatientsList } from "@/components/patients/patients-list";
+import { Button } from "@/components/ui/button";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
 import { getPatientList } from "@/lib/patients/patient.service.server";
 import { parsePatientListQuery } from "@/lib/patients/patient-query";
@@ -15,12 +16,21 @@ export default async function PatientsPage({ searchParams }: PageProps<"/patient
 
   return (
     <section aria-labelledby="patients-heading">
-      <h2 id="patients-heading" className="text-2xl">
-        Patient directory
+      <PageHeader
+        title="Patient directory"
+        description={`${meta.total.toLocaleString()} ${meta.total === 1 ? "patient" : "patients"}`}
+        actions={
+          <Button asChild>
+            <Link href="/patients/new">
+              <Plus aria-hidden="true" />
+              Create patient
+            </Link>
+          </Button>
+        }
+      />
+      <h2 id="patients-heading" className="sr-only">
+        Patients
       </h2>
-      <p className="mt-2 text-muted-foreground">
-        {meta.total.toLocaleString()} {meta.total === 1 ? "patient" : "patients"}
-      </p>
       <div className="mt-6">
         <PatientSearch
           value={query.search}
@@ -46,3 +56,7 @@ export default async function PatientsPage({ searchParams }: PageProps<"/patient
     </section>
   );
 }
+
+import { Plus } from "lucide-react";
+import Link from "next/link";
+import { PageHeader } from "@/components/layout/page-navigation";

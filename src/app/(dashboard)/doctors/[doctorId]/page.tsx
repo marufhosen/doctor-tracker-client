@@ -1,8 +1,11 @@
-import { Building2, CalendarDays, Mail, Phone, Stethoscope } from "lucide-react";
+import { Building2, CalendarDays, Mail, Phone, Stethoscope, UserPlus } from "lucide-react";
+import type { Route } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { DoctorPatients } from "@/components/doctors/doctor-patients";
 import { PageHeader } from "@/components/layout/page-navigation";
+import { Button } from "@/components/ui/button";
 import { ApiClientError } from "@/lib/api/errors";
 import type { Doctor } from "@/lib/api/schemas/doctor";
 import { getDoctorDetail, getDoctorPatients } from "@/lib/doctors/doctor.service.server";
@@ -47,6 +50,14 @@ export default async function DoctorDetailPage({
         title={doctor.name}
         description="Doctor profile and patient assignments."
         breadcrumbs={[{ label: "Doctors", href: "/doctors" }, { label: doctor.name }]}
+        actions={
+          <Button asChild>
+            <Link href={`/doctors/${doctor.id}/patients/new` as Route}>
+              <UserPlus aria-hidden="true" />
+              Create and assign patient
+            </Link>
+          </Button>
+        }
       />
       <section
         aria-labelledby="profile-heading"

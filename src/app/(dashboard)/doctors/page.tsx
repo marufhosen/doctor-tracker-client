@@ -1,7 +1,11 @@
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import { DoctorFilters } from "@/components/doctors/doctor-filters";
 import { DoctorPagination } from "@/components/doctors/doctor-pagination";
 import { DoctorSearch } from "@/components/doctors/doctor-search";
 import { DoctorsList } from "@/components/doctors/doctors-list";
+import { PageHeader } from "@/components/layout/page-navigation";
+import { Button } from "@/components/ui/button";
 import { getDoctorList } from "@/lib/doctors/doctor.service.server";
 import { parseDoctorListQuery } from "@/lib/doctors/doctor-query";
 
@@ -11,12 +15,21 @@ export default async function DoctorsPage({ searchParams }: PageProps<"/doctors"
 
   return (
     <section aria-labelledby="doctors-heading">
-      <h2 id="doctors-heading" className="text-2xl">
-        Doctor directory
+      <PageHeader
+        title="Doctor directory"
+        description={`${meta.total.toLocaleString()} ${meta.total === 1 ? "doctor" : "doctors"}`}
+        actions={
+          <Button asChild>
+            <Link href="/doctors/new">
+              <Plus aria-hidden="true" />
+              Add doctor
+            </Link>
+          </Button>
+        }
+      />
+      <h2 id="doctors-heading" className="sr-only">
+        Doctors
       </h2>
-      <p className="mt-2 text-muted-foreground">
-        {meta.total.toLocaleString()} {meta.total === 1 ? "doctor" : "doctors"}
-      </p>
       <div className="mt-6">
         <DoctorSearch
           value={query.search}
