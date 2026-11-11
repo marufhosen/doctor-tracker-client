@@ -1,6 +1,8 @@
 "use client";
 
 import { useFormik } from "formik";
+import type { Route } from "next";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { type DoctorInput, doctorInputSchema } from "@/lib/api/schemas/doctor";
 
 type DoctorFormResult =
-  | { success: true }
+  | { success: true; doctorId: string }
   | { success: false; message: string; fieldErrors?: Partial<Record<keyof DoctorInput, string>> };
 
 const initialValues: DoctorInput = {
@@ -37,16 +39,19 @@ export function DoctorForm({
 }: {
   submit?: (input: DoctorInput) => Promise<DoctorFormResult>;
 }) {
+  const router = useRouter();
   const formik = useFormik({
     initialValues,
     validate: validateDoctorValues,
     onSubmit: async (values, helpers) => {
       if (!submit) return;
       const result = await submit(doctorInputSchema.parse(values));
-      if (!result.success) {
-        helpers.setStatus(result.message);
-        if (result.fieldErrors) helpers.setErrors(result.fieldErrors);
+      if (result.success) {
+        router.push(`/doctors/${result.doctorId}` as Route);
+        return;
       }
+      helpers.setStatus(result.message);
+      if (result.fieldErrors) helpers.setErrors(result.fieldErrors);
     },
   });
 

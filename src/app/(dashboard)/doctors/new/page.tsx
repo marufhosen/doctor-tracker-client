@@ -1,3 +1,4 @@
+import { createDoctorAction } from "@/actions/doctor.actions";
 import { DoctorForm } from "@/components/doctors/doctor-form";
 import { PageHeader } from "@/components/layout/page-navigation";
 
@@ -10,7 +11,7 @@ export default function NewDoctorPage() {
         description="Create a doctor record using the supported clinical and contact fields."
         breadcrumbs={[{ label: "Doctors", href: "/doctors" }, { label: "Add doctor" }]}
       />
-      <DoctorForm />
+      <DoctorForm submit={createDoctorAction} />
     </>
   );
 }
