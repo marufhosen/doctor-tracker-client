@@ -11,6 +11,10 @@ import { getAuthCookies } from "@/lib/auth/cookies.server";
 import { getProtectedRouteDecision } from "@/lib/auth/protected.core";
 import { getSession } from "@/lib/auth/session.server";
 
+// Protected pages depend on request cookies and private no-store API data.
+// They cannot be safely prefetched as user-independent instant shells.
+export const instant = false;
+
 export default function ProtectedLayout({ children }: LayoutProps<"/">) {
   return (
     <Suspense fallback={null}>

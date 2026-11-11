@@ -66,6 +66,8 @@ src/
 
 Pages remain Server Components. Interactive forms, navigation drawers, charts, and dialogs are small Client Components. Reads go through server-only services; mutations use Server Actions. Backend request and response payloads are validated with Zod.
 
+The protected route layout opts out of Next.js instant-navigation validation because authorization and all clinical data are request-specific and deliberately `no-store`. This still allows normal server streaming and loading fallbacks; it prevents Next.js from treating secure blocking reads as invalid user-independent shells during development.
+
 Search, filters, sorting, date ranges, and pagination use URL parameters as their source of truth. This preserves history, reloads, sharing, and no-JavaScript form behavior.
 
 ## Authentication and security
