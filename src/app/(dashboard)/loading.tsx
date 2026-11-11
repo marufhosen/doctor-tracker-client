@@ -1,5 +1,9 @@
 import { PageSkeleton } from "@/components/ui/skeleton";
 
 export default function DashboardLoading() {
-  return <PageSkeleton />;
+  return (
+    <div className="overflow-hidden">
+      <PageSkeleton />
+    </div>
+  );
 }

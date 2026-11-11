@@ -21,7 +21,7 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
   const range = parseDashboardDateRange(rawSearchParams);
 
   return (
-    <div className="space-y-4 lg:space-y-5">
+    <div className="space-y-3 [&>header]:mb-2">
       <PageHeader title="Overview" description="Your care network, at a glance." />
       <Suspense
         fallback={
@@ -30,7 +30,7 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
       >
         <SummarySection />
       </Suspense>
-      <div className="grid gap-4 xl:grid-cols-[1.65fr_1fr]">
+      <div className="grid gap-3 xl:grid-cols-[1.65fr_1fr]">
         <Suspense fallback={<DashboardSectionSkeleton label="Loading dashboard trends" />}>
           <TrendsSection range={range} />
         </Suspense>
@@ -38,12 +38,6 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
           <DoctorAnalyticsSection />
         </Suspense>
       </div>
-      <section className="rounded-[10px] border bg-card px-5 py-5">
-        <h2 className="text-lg">Network summary</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Open Doctors to review assigned patients, or Patients to search and manage all records.
-        </p>
-      </section>
     </div>
   );
 }

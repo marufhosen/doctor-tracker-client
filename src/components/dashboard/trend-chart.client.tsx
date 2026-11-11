@@ -15,7 +15,7 @@ import { type CombinedTrendPoint, formatTrendDate } from "@/components/dashboard
 
 export function TrendChart({ data }: { data: CombinedTrendPoint[] }) {
   return (
-    <div aria-hidden="true" className="h-80 min-w-0 w-full">
+    <div aria-hidden="true" className="h-64 min-w-0 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 12, right: 12, left: -12, bottom: 8 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />

@@ -18,7 +18,7 @@ export function ApplicationShell({ children, navigation, topbar }: ApplicationSh
 
       <aside
         aria-label="Application navigation"
-        className="hidden h-dvh border-r border-sidebar-border bg-sidebar text-sidebar-foreground lg:block lg:overflow-y-auto"
+        className="scrollbar-custom hidden h-dvh border-r border-sidebar-border bg-sidebar text-sidebar-foreground lg:block lg:overflow-y-auto"
       >
         {navigation}
       </aside>
@@ -30,7 +30,7 @@ export function ApplicationShell({ children, navigation, topbar }: ApplicationSh
         <main
           id="main-content"
           tabIndex={-1}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-5 sm:px-6 lg:px-7 lg:py-6"
+          className="scrollbar-custom min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain px-3 py-4 sm:px-4 lg:px-5 lg:py-4"
         >
           <div className="mx-auto w-full max-w-[72rem]">{children}</div>
         </main>

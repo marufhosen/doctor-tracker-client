@@ -123,12 +123,12 @@ export function DoctorForm({
             variant="outline"
             onClick={onCancel}
             disabled={formik.isSubmitting}
-            className="h-control px-5"
+            className="h-10 px-5"
           >
             Cancel
           </Button>
         )}
-        <Button type="submit" disabled={!submit || formik.isSubmitting} className="h-control px-5">
+        <Button type="submit" disabled={!submit || formik.isSubmitting} className="h-10 px-5">
           {formik.isSubmitting ? (
             <LoaderCircle aria-hidden="true" className="animate-spin" />
           ) : (

@@ -52,7 +52,9 @@ export function SelectContent({
         <SelectPrimitive.ScrollUpButton className="flex h-6 items-center justify-center bg-popover">
           <ChevronUp aria-hidden="true" className="size-3.5" />
         </SelectPrimitive.ScrollUpButton>
-        <SelectPrimitive.Viewport className="p-1">{children}</SelectPrimitive.Viewport>
+        <SelectPrimitive.Viewport className="scrollbar-custom p-1">
+          {children}
+        </SelectPrimitive.Viewport>
         <SelectPrimitive.ScrollDownButton className="flex h-6 items-center justify-center bg-popover">
           <ChevronDown aria-hidden="true" className="size-3.5" />
         </SelectPrimitive.ScrollDownButton>

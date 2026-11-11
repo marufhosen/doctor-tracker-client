@@ -71,7 +71,7 @@ function LoginPageShell({ returnTo = "/dashboard" }: { returnTo?: string }) {
             </div>
           </div>
         </aside>
-        <section className="flex min-h-0 flex-col overflow-y-auto px-6 py-8 sm:px-10 lg:px-12">
+        <section className="scrollbar-custom flex min-h-0 flex-col overflow-y-auto px-6 py-8 sm:px-10 lg:px-12">
           <div className="mx-auto my-auto w-full max-w-[23rem]">
             <div className="flex items-center gap-2.5">
               <span className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground">

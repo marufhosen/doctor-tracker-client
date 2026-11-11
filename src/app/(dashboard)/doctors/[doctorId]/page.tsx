@@ -41,7 +41,6 @@ export default async function DoctorDetailPage({
         kind="detail"
         title={doctor.name}
         description="Doctors / Patient list"
-        breadcrumbs={[{ label: "Doctors", href: "/doctors" }, { label: doctor.name }]}
         actions={
           <CreatePatientDialog
             doctorId={doctor.id}

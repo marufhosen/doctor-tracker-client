@@ -1,6 +1,6 @@
 "use client";
 
-import { LockKeyhole, Plus, ShieldCheck } from "lucide-react";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { isNavigationItemActive, primaryNavigation } from "@/components/layout/navigation";
