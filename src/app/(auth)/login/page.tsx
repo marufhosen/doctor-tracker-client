@@ -1,8 +1,7 @@
-import { Plus } from "lucide-react";
 import Image from "next/image";
 import { Suspense } from "react";
-
 import { LoginForm } from "@/components/auth/login-form";
+import { LogoMark } from "@/components/brand/logo-mark";
 import { getSafeReturnPath } from "@/lib/auth/redirect";
 
 const doctorPhotoUrl =
@@ -54,7 +53,7 @@ function LoginPageShell({ returnTo = "/dashboard" }: { returnTo?: string }) {
           <div className="shrink-0 bg-primary px-8 py-6 text-primary-foreground lg:px-10">
             <p className="flex items-center justify-center gap-2.5 text-base font-semibold">
               <span className="grid size-8 place-items-center rounded-full bg-white/15">
-                <Plus aria-hidden="true" className="size-4" />
+                <LogoMark className="size-4" />
               </span>
               Doctor Tracker
             </p>
@@ -75,7 +74,7 @@ function LoginPageShell({ returnTo = "/dashboard" }: { returnTo?: string }) {
           <div className="mx-auto my-auto w-full max-w-[23rem]">
             <div className="flex items-center gap-2.5">
               <span className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground">
-                <Plus aria-hidden="true" className="size-5" />
+                <LogoMark className="size-5" />
               </span>
               <span className="text-lg font-semibold">Doctor Tracker</span>
             </div>

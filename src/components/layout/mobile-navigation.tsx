@@ -1,9 +1,10 @@
 "use client";
 
-import { HeartPulse, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { LogoMark } from "@/components/brand/logo-mark";
 import { isNavigationItemActive, primaryNavigation } from "@/components/layout/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,7 +32,7 @@ export function MobileNavigation() {
           <div className="flex h-full flex-col px-3 py-4">
             <div className="flex min-h-11 items-center gap-3 px-2 pr-12">
               <span className="grid size-10 place-items-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
-                <HeartPulse aria-hidden="true" className="size-5" />
+                <LogoMark className="size-5" />
               </span>
               <div>
                 <SheetTitle className="font-semibold">Doctor Tracker</SheetTitle>

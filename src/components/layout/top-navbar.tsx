@@ -1,12 +1,14 @@
 "use client";
 
-import { ArrowLeft, ShieldCheck } from "lucide-react";
+import { ArrowLeft, PanelLeftClose, PanelLeftOpen, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { useSidebar } from "@/components/layout/application-shell";
 import { getPageContext } from "@/components/layout/page-context";
 import { PageBreadcrumbs } from "@/components/layout/page-navigation";
+import { Button } from "@/components/ui/button";
 
 export function TopNavbar({
   navigationControl,
@@ -16,9 +18,26 @@ export function TopNavbar({
   profileMenu?: ReactNode;
 }) {
   const context = getPageContext(usePathname());
+  const { collapsed, toggle } = useSidebar();
 
   return (
     <div className="flex min-h-16 items-center gap-3 py-1.5">
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon-sm"
+        onClick={toggle}
+        aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        aria-expanded={!collapsed}
+        aria-controls="application-sidebar"
+        className="hidden shrink-0 text-muted-foreground lg:inline-flex"
+      >
+        {collapsed ? (
+          <PanelLeftOpen aria-hidden="true" className="size-4" />
+        ) : (
+          <PanelLeftClose aria-hidden="true" className="size-4" />
+        )}
+      </Button>
       {navigationControl}
       {context.parent && (
         <Link

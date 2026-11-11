@@ -35,7 +35,7 @@ async function ProtectedContent({ children }: { children: React.ReactNode }) {
   if (session.status !== "authenticated") redirect("/login?next=/dashboard");
   return (
     <ApplicationShell
-      navigation={<DesktopSidebar user={{ name: session.user.name, role: "ADMIN" }} />}
+      navigation={<DesktopSidebar />}
       topbar={
         <TopNavbar
           navigationControl={<MobileNavigation />}
