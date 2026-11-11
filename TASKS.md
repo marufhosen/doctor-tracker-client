@@ -94,5 +94,5 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **66 Optimize boundaries.** Reduce client JS, waterfalls, rerenders, chart cost. **Accept:** main pages remain server-rendered; build evidence recorded. **Commit:** `perf: optimize server component boundaries`.
 - [x] **67 Review security/auth.** Threat-model cookies, CSRF, redirects, refresh, roles, validation, leakage. **Accept:** findings fixed with regressions. **Commit:** `fix: harden frontend security`.
 - [x] **68 Add E2E tests.** Cover auth, navigation, doctor creation, patient CRUD, filters, denial. **Accept:** deterministic controlled-backend suite passes. **Commit:** `test: add administrative end-to-end flows`.
-- [ ] **69 Verify production build.** Run and fix full type/lint/test/build. **Accept:** all pass cleanly. **Commit:** `chore: verify production build`.
+- [x] **69 Verify production build.** Run and fix full type/lint/test/build. **Accept:** all pass cleanly. **Commit:** `chore: verify production build`.
 - [ ] **70 Finalize documentation.** Setup, env, backend, scripts, architecture, auth, tests, limitations. **Accept:** new contributor can run/verify without secrets. **Commit:** `docs: finalize client documentation`.
