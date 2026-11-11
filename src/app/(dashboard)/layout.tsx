@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { RefreshCoordinator } from "@/components/auth/refresh-coordinator";
 import { ApplicationShell } from "@/components/layout/application-shell";
 import { DesktopSidebar } from "@/components/layout/desktop-sidebar";
+import { MobileNavigation } from "@/components/layout/mobile-navigation";
 import { ProfileMenu } from "@/components/layout/profile-menu";
 import { TopNavbar } from "@/components/layout/top-navbar";
 import { getAuthCookies } from "@/lib/auth/cookies.server";
@@ -31,7 +32,12 @@ async function ProtectedContent({ children }: { children: React.ReactNode }) {
   return (
     <ApplicationShell
       navigation={<DesktopSidebar />}
-      topbar={<TopNavbar profileMenu={<ProfileMenu user={{ ...session.user, role: "ADMIN" }} />} />}
+      topbar={
+        <TopNavbar
+          navigationControl={<MobileNavigation />}
+          profileMenu={<ProfileMenu user={{ ...session.user, role: "ADMIN" }} />}
+        />
+      }
     >
       {children}
     </ApplicationShell>
