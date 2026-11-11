@@ -76,7 +76,7 @@ and stop. “Accept” is the task's acceptance criteria.
 - [x] **51 Add patient filters.** Real condition/doctor/date/sort controls. **Accept:** API encoding correct. **Commit:** `feat: add patient filters`.
 - [x] **52 Add patient pagination.** Metadata URL controls retaining filters. **Accept:** boundaries pass. **Commit:** `feat: add patient pagination`.
 - [x] **53 Build add patient form.** Formik supported fields in fixed doctor context. **Accept:** optionals/age normalize. **Commit:** `feat: build patient creation form`.
-- [ ] **54 Implement create patient action.** Validate ADMIN/doctor/input, CSRF, revalidate lists/counts. **Accept:** typed result cases tested. **Commit:** `feat: create patients through server action`.
+- [x] **54 Implement create patient action.** Validate ADMIN/doctor/input, CSRF, revalidate lists/counts. **Accept:** typed result cases tested. **Commit:** `feat: create patients through server action`.
 - [ ] **55 Implement patient details.** Server view with associated doctor/not-found/actions. **Accept:** optional/missing data explicit. **Commit:** `feat: add patient details page`.
 - [ ] **56 Build edit patient form.** Formik mutable fields only. **Accept:** dirty/clearing/accessibility/pending pass. **Commit:** `feat: build patient edit form`.
 - [ ] **57 Implement update action.** Validate changes/ADMIN/CSRF and revalidate. **Accept:** doctor ID cannot be submitted. **Commit:** `feat: update patients through server action`.

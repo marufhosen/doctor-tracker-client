@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import {
+  type CreatePatientResult,
   type PatientMutationResult,
   performCreateDoctorPatient,
   performRemoveDoctorPatient,
@@ -30,19 +31,20 @@ function refresh(doctorId: string) {
 export async function createDoctorPatientAction(
   doctorId: string,
   input: unknown,
-): Promise<PatientMutationResult> {
+): Promise<CreatePatientResult> {
   const result = await performCreateDoctorPatient(
     doctorId,
     input,
     await getSession(),
     async (id, patient: PatientInput) => {
-      await apiClient.request({
+      const response = await apiClient.request({
         path: apiEndpoints.doctors.patients(id),
         method: "POST",
         body: patient,
         ...(await context()),
         responseSchema: patientResponseSchema,
       });
+      return response.data.data.patient;
     },
   );
   if (result.success) refresh(doctorId);
