@@ -51,7 +51,7 @@ export function PatientToolbar({
             name="search"
             type="search"
             defaultValue={query.search ?? ""}
-            placeholder="Search by name, email, or phone…"
+            placeholder="Search by name, condition, email, or phone…"
             maxLength={100}
             className="h-9 pl-9"
           />

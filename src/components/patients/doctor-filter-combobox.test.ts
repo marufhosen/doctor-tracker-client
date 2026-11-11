@@ -10,9 +10,7 @@ const doctors = [
 
 describe("filterDoctorOptions", () => {
   test("matches doctor names without case sensitivity", () => {
-    expect(filterDoctorOptions(doctors, "JAMES")).toEqual([
-      { id: "2", name: "Dr. James Chen" },
-    ]);
+    expect(filterDoctorOptions(doctors, "JAMES")).toEqual([{ id: "2", name: "Dr. James Chen" }]);
   });
 
   test("trims search input and returns all doctors for an empty query", () => {
