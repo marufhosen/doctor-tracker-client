@@ -35,7 +35,7 @@ export function PatientFilters({
             id="patient-doctor"
             name="doctorId"
             defaultValue={query.doctorId ?? ""}
-            className="h-control rounded-lg border bg-background px-3 text-sm"
+            className="h-control min-w-0 w-full rounded-lg border bg-background px-3 text-sm"
           >
             <option value="">All doctors</option>
             {doctors.map((doctor) => (
@@ -69,7 +69,7 @@ export function PatientFilters({
             id="patient-sort"
             name="sortBy"
             defaultValue={query.sortBy ?? "createdAt"}
-            className="h-control rounded-lg border bg-background px-3 text-sm"
+            className="h-control min-w-0 w-full rounded-lg border bg-background px-3 text-sm"
           >
             <option value="createdAt">Created date</option>
             <option value="name">Name</option>
@@ -83,17 +83,22 @@ export function PatientFilters({
             id="patient-order"
             name="sortOrder"
             defaultValue={query.sortOrder ?? "desc"}
-            className="h-control rounded-lg border bg-background px-3 text-sm"
+            className="h-control min-w-0 w-full rounded-lg border bg-background px-3 text-sm"
           >
             <option value="desc">Descending</option>
             <option value="asc">Ascending</option>
           </select>
         </label>
-        <div className="flex items-end gap-2 sm:col-span-2">
-          <Button type="submit" className="h-control px-4">
+        <div className="flex flex-col gap-2 sm:col-span-2 sm:flex-row sm:items-end">
+          <Button type="submit" className="h-control w-full px-4 sm:w-auto">
             Apply filters
           </Button>
-          <Button asChild type="button" variant="outline" className="h-control px-4">
+          <Button
+            asChild
+            type="button"
+            variant="outline"
+            className="h-control w-full px-4 sm:w-auto"
+          >
             <Link href={clear as Route}>Clear filters</Link>
           </Button>
         </div>
