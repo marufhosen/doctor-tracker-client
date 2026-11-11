@@ -3,6 +3,7 @@ import type { Route } from "next";
 import Link from "next/link";
 
 import { FilterForm } from "@/components/filter-form";
+import { DoctorFilterCombobox } from "@/components/patients/doctor-filter-combobox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -93,22 +94,14 @@ export function PatientToolbar({
               className="h-8 text-xs"
             />
           </label>
-          <label htmlFor="patient-doctor" className={labelClass}>
-            Doctor
-            <Select name="doctorId" defaultValue={query.doctorId ?? "__empty__"}>
-              <SelectTrigger id="patient-doctor" className="h-8 text-xs">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="__empty__">All doctors</SelectItem>
-                {doctors.map((doctor) => (
-                  <SelectItem key={doctor.id} value={doctor.id}>
-                    {doctor.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </label>
+          <div className={labelClass}>
+            <label htmlFor="patient-doctor">Doctor</label>
+            <DoctorFilterCombobox
+              key={query.doctorId ?? "all-doctors"}
+              doctors={doctors}
+              initialValue={query.doctorId}
+            />
+          </div>
           <label htmlFor="patient-created-from" className={labelClass}>
             Created from
             <Input
